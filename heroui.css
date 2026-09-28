@@ -102,7 +102,13 @@ code {
 ================================================== */
 
 .site-header {
-  padding: 52px 0 24px;
+      padding: 25px;
+    --quality-color: #71717a;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card);
+    margin: 20px 0;
 }
 
 
