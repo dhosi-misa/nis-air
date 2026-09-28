@@ -1,1 +1,1187 @@
+/* ======================================================
+   MINIMAL HEROUI-INSPIRED STATIC CSS
+
+   No framework.
+   No CDN.
+   No dependency.
+   Works directly with static HTML.
+====================================================== */
+
+
+/* ======================================================
+   DESIGN TOKENS
+====================================================== */
+
+:root {
+
+  --bg:
+    #000;
+
+  --surface:
+    #18181b;
+
+  --surface-2:
+    #27272a;
+
+  --foreground:
+    #f4f4f5;
+
+  --muted:
+    #a1a1aa;
+
+  --muted-2:
+    #71717a;
+
+  --muted-3:
+    #52525b;
+
+  --border:
+    rgba(255,255,255,.10);
+
+  --border-hover:
+    rgba(255,255,255,.16);
+
+  --green:
+    #17c964;
+
+  --red:
+    #f31260;
+
+  --yellow:
+    #f5c542;
+}
+
+
+/* ======================================================
+   RESET
+====================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+
+  margin: 0;
+
+  min-height: 100vh;
+
+  background:
+
+    radial-gradient(
+      circle at 50% -20%,
+      rgba(255,255,255,.065),
+      transparent 38%
+    ),
+
+    var(--bg);
+
+  color:
+    var(--foreground);
+
+  font-family:
+
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  -webkit-font-smoothing:
+    antialiased;
+}
+
+
+button {
+  font: inherit;
+}
+
+
+a {
+  color:
+    #a1a1aa;
+}
+
+
+code {
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+}
+
+
+/* ======================================================
+   APP
+====================================================== */
+
+.app-shell {
+
+  width:
+    min(
+      1100px,
+      calc(100% - 32px)
+    );
+
+  margin:
+    0 auto;
+}
+
+
+/* ======================================================
+   HEADER
+====================================================== */
+
+.site-header {
+
+  padding:
+    55px 0 25px;
+}
+
+
+.eyebrow {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    8px;
+
+  color:
+    var(--muted);
+
+  font-size:
+    .68rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    .1em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.eyebrow-dot {
+
+  width:
+    6px;
+
+  height:
+    6px;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--green);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(23,201,100,.10);
+}
+
+
+h1 {
+
+  margin:
+    14px 0;
+
+  font-size:
+    clamp(
+      2.4rem,
+      7vw,
+      5rem
+    );
+
+  line-height:
+    .95;
+
+  letter-spacing:
+    -.055em;
+
+  font-weight:
+    800;
+}
+
+
+.intro {
+
+  max-width:
+    650px;
+
+  margin:
+    0;
+
+  color:
+    var(--muted);
+
+  font-size:
+    .92rem;
+
+  line-height:
+    1.65;
+}
+
+
+/* ======================================================
+   TOOLBAR / TABS
+====================================================== */
+
+.toolbar {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    15px;
+
+  margin-top:
+    30px;
+
+  padding:
+    5px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    14px;
+
+  background:
+    rgba(24,24,27,.75);
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+}
+
+
+.tabs {
+
+  display:
+    flex;
+
+  gap:
+    3px;
+}
+
+
+.tab {
+
+  border:
+    0;
+
+  border-radius:
+    9px;
+
+  padding:
+    8px 15px;
+
+  background:
+    transparent;
+
+  color:
+    var(--muted);
+
+  cursor:
+    pointer;
+
+  font-size:
+    .75rem;
+
+  font-weight:
+    700;
+
+  transition:
+    background .18s ease,
+    color .18s ease;
+}
+
+
+.tab:hover {
+
+  color:
+    #fff;
+
+  background:
+    rgba(255,255,255,.045);
+}
+
+
+.tab.active {
+
+  background:
+    #27272a;
+
+  color:
+    #fff;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(255,255,255,.055);
+}
+
+
+.live {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    7px;
+
+  padding:
+    0 10px;
+
+  color:
+    var(--muted-2);
+
+  font-size:
+    .63rem;
+
+  white-space:
+    nowrap;
+}
+
+
+.live-dot {
+
+  width:
+    6px;
+
+  height:
+    6px;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--green);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(23,201,100,.10);
+}
+
+
+.status {
+
+  min-height:
+    20px;
+
+  margin:
+    10px 4px 22px;
+
+  color:
+    var(--muted-2);
+
+  font-size:
+    .67rem;
+}
+
+
+/* ======================================================
+   CARD GRID
+====================================================== */
+
+.cards {
+
+  display:
+    grid;
+
+  gap:
+    16px;
+
+  padding-bottom:
+    28px;
+}
+
+
+/* ======================================================
+   AIR CARD
+====================================================== */
+
+.air-card {
+
+  --quality-color:
+    #71717a;
+
+  --quality-alpha:
+    .06;
+
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  min-width:
+    0;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    18px;
+
+  background:
+
+    linear-gradient(
+
+      180deg,
+
+      color-mix(
+        in srgb,
+        var(--quality-color)
+        calc(var(--quality-alpha) * 100%),
+        transparent
+      )
+      0%,
+
+      rgba(24,24,27,.78)
+      38%,
+
+      #18181b
+      100%
+    );
+
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,.20);
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+
+.air-card:hover {
+
+  transform:
+    translateY(-1px);
+
+  border-color:
+    var(--border-hover);
+
+  box-shadow:
+    0 14px 38px
+    rgba(0,0,0,.28);
+}
+
+
+/* Soft color bloom */
+
+.air-card-glow {
+
+  position:
+    absolute;
+
+  top:
+    -100px;
+
+  left:
+    0;
+
+  width:
+    100%;
+
+  height:
+    260px;
+
+  pointer-events:
+    none;
+
+  background:
+
+    radial-gradient(
+
+      ellipse at center,
+
+      color-mix(
+        in srgb,
+        var(--quality-color)
+        calc(
+          var(--quality-alpha) * 100%
+        ),
+        transparent
+      ),
+
+      transparent 70%
+    );
+}
+
+
+.air-card-content {
+
+  position:
+    relative;
+
+  z-index:
+    1;
+
+  padding:
+    22px;
+}
+
+
+/* ======================================================
+   CARD HEADER
+====================================================== */
+
+.card-header {
+
+  display:
+    flex;
+
+  align-items:
+    flex-start;
+
+  justify-content:
+    space-between;
+
+  gap:
+    15px;
+}
+
+
+.date {
+
+  color:
+    #fafafa;
+
+  font-size:
+    .9rem;
+
+  font-weight:
+    750;
+
+  letter-spacing:
+    -.015em;
+
+  text-transform:
+    capitalize;
+}
+
+
+.today {
+
+  margin-top:
+    5px;
+
+  color:
+    var(--muted-2);
+
+  font-size:
+    .6rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    .08em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* ======================================================
+   CHIP
+====================================================== */
+
+.chip {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  padding:
+    5px 9px;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--quality-color) 25%,
+      rgba(255,255,255,.08)
+    );
+
+  border-radius:
+    999px;
+
+  background:
+
+    color-mix(
+      in srgb,
+      var(--quality-color) 9%,
+      rgba(255,255,255,.035)
+    );
+
+  color:
+    #e4e4e7;
+
+  font-size:
+    .63rem;
+
+  font-weight:
+    700;
+
+  white-space:
+    nowrap;
+}
+
+
+/* ======================================================
+   INDICATOR
+====================================================== */
+
+.indicator {
+
+  margin-top:
+    32px;
+}
+
+
+.label {
+
+  color:
+    var(--muted-2);
+
+  font-size:
+    .61rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    .08em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.indicator-value {
+
+  margin-top:
+    7px;
+
+  color:
+    #fff;
+
+  font-size:
+    1.8rem;
+
+  line-height:
+    1;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    -.045em;
+}
+
+
+.change {
+
+  margin-top:
+    9px;
+
+  color:
+    var(--muted-2);
+
+  font-size:
+    .68rem;
+}
+
+
+.change.improved {
+  color:
+    #4ade80;
+}
+
+
+.change.worse {
+  color:
+    #fb923c;
+}
+
+
+/* ======================================================
+   POLLUTANTS
+====================================================== */
+
+.section-label {
+
+  margin:
+    28px 0 10px;
+
+  color:
+    var(--muted-2);
+
+  font-size:
+    .61rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    .08em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.pollutants {
+
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(125px, 1fr)
+    );
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    12px;
+
+  background:
+    rgba(0,0,0,.12);
+}
+
+
+.pollutant {
+
+  min-width:
+    0;
+
+  padding:
+    13px;
+
+  border-right:
+    1px solid var(--border);
+
+  border-bottom:
+    1px solid var(--border);
+
+  transition:
+    background .18s ease;
+}
+
+
+.pollutant:hover {
+
+  background:
+    rgba(255,255,255,.025);
+}
+
+
+.pollutant-name {
+
+  color:
+    var(--muted);
+
+  font-size:
+    .66rem;
+
+  font-weight:
+    650;
+}
+
+
+.pollutant-value {
+
+  margin-top:
+    4px;
+
+  color:
+    #f4f4f5;
+
+  font-size:
+    1rem;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    -.02em;
+}
+
+
+.pollutant-unit {
+
+  margin-left:
+    2px;
+
+  color:
+    var(--muted-2);
+
+  font-size:
+    .62rem;
+
+  font-weight:
+    500;
+}
+
+
+.pollutant-meta {
+
+  overflow:
+    hidden;
+
+  margin-top:
+    4px;
+
+  color:
+    var(--muted-3);
+
+  font-size:
+    .56rem;
+
+  line-height:
+    1.35;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
+.card-footer {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    12px;
+
+  margin-top:
+    14px;
+
+  color:
+    var(--muted-3);
+
+  font-size:
+    .6rem;
+}
+
+
+.preliminary {
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    5px;
+}
+
+
+.preliminary::before {
+
+  content:
+    "";
+
+  width:
+    5px;
+
+  height:
+    5px;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--yellow);
+}
+
+
+/* ======================================================
+   EMPTY / ERROR
+====================================================== */
+
+.empty {
+
+  padding:
+    28px;
+
+  border:
+    1px dashed
+    var(--border-hover);
+
+  border-radius:
+    14px;
+
+  background:
+    var(--surface);
+
+  color:
+    var(--muted);
+
+  font-size:
+    .8rem;
+}
+
+
+.error {
+
+  padding:
+    18px;
+
+  border:
+    1px solid
+    rgba(243,18,96,.20);
+
+  border-radius:
+    14px;
+
+  background:
+    rgba(243,18,96,.05);
+
+  color:
+    #fda4af;
+
+  font-size:
+    .78rem;
+}
+
+
+/* ======================================================
+   SITE FOOTER
+====================================================== */
+
+.site-footer {
+
+  padding:
+    25px 0 50px;
+
+  color:
+    var(--muted-3);
+
+  font-size:
+    .65rem;
+
+  line-height:
+    1.7;
+}
+
+
+.site-footer p {
+  margin:
+    5px 0;
+}
+
+
+.site-footer strong {
+  color:
+    var(--muted-2);
+}
+
+
+.site-footer a {
+  color:
+    var(--muted);
+}
+
+
+/* ======================================================
+   DESKTOP
+====================================================== */
+
+@media (min-width: 720px) {
+
+  .cards {
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+
+  /*
+    Najnoviji dan zauzima celu širinu.
+  */
+
+  .air-card:first-child {
+
+    grid-column:
+      1 / -1;
+  }
+
+
+  .air-card:first-child
+  .air-card-content {
+
+    padding:
+      26px;
+  }
+
+
+  .air-card:first-child
+  .indicator-value {
+
+    font-size:
+      2.1rem;
+  }
+
+
+  .air-card:first-child
+  .pollutants {
+
+    grid-template-columns:
+      repeat(
+        5,
+        minmax(0, 1fr)
+      );
+  }
+}
+
+
+/* ======================================================
+   MOBILE
+====================================================== */
+
+@media (max-width: 600px) {
+
+  .app-shell {
+
+    width:
+      calc(100% - 22px);
+  }
+
+
+  .site-header {
+
+    padding-top:
+      32px;
+  }
+
+
+  .toolbar {
+
+    align-items:
+      center;
+  }
+
+
+  .live {
+
+    font-size:
+      .6rem;
+  }
+
+
+  .air-card-content {
+
+    padding:
+      18px;
+  }
+
+
+  .pollutants {
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+}
+
+
+@media (max-width: 440px) {
+
+  .toolbar {
+
+    flex-wrap:
+      wrap;
+  }
+
+
+  .live {
+
+    width:
+      100%;
+
+    justify-content:
+      flex-end;
+
+    padding:
+      2px 5px 3px;
+  }
+}
+
+
+@media (max-width: 380px) {
+
+  .tabs {
+
+    width:
+      100%;
+  }
+
+
+  .tab {
+
+    flex:
+      1;
+  }
+}
 
