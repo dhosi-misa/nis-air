@@ -1,7 +1,6 @@
 
 <!doctype html>
 <html lang="sr">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,12 +48,16 @@
         "Segoe UI",
         sans-serif;
       background:
-        radial-gradient(circle at 15% -10%,
+        radial-gradient(
+          circle at 15% -10%,
           rgba(52, 211, 153, .12),
-          transparent 34%),
-        radial-gradient(circle at 100% 0%,
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at 100% 0%,
           rgba(96, 165, 250, .11),
-          transparent 30%),
+          transparent 30%
+        ),
         linear-gradient(180deg, #081321 0%, #06101d 55%, #040b14 100%);
     }
 
@@ -195,9 +198,11 @@
       border: 1px solid var(--line);
       border-radius: 22px;
       background:
-        linear-gradient(145deg,
+        linear-gradient(
+          145deg,
           rgba(17, 36, 59, .88),
-          rgba(8, 20, 34, .92));
+          rgba(8, 20, 34, .92)
+        );
       box-shadow: var(--shadow);
       isolation: isolate;
     }
@@ -272,9 +277,9 @@
     .badge {
       flex-shrink: 0;
       padding: 6px 10px;
-      border: 1px solid rgba(255, 255, 255, .09);
+      border: 1px solid rgba(255,255,255,.09);
       border-radius: 999px;
-      background: rgba(255, 255, 255, .055);
+      background: rgba(255,255,255,.055);
       color: var(--text);
       font-size: .7rem;
       font-weight: 850;
@@ -332,9 +337,9 @@
     .pollutant {
       min-width: 0;
       padding: 11px;
-      border: 1px solid rgba(255, 255, 255, .065);
+      border: 1px solid rgba(255,255,255,.065);
       border-radius: 14px;
-      background: rgba(255, 255, 255, .035);
+      background: rgba(255,255,255,.035);
     }
 
     .pollutant .name {
@@ -376,7 +381,7 @@
       gap: 10px;
       margin-top: 14px;
       padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, .055);
+      border-top: 1px solid rgba(255,255,255,.055);
       color: var(--muted-2);
       font-size: .66rem;
     }
@@ -399,10 +404,10 @@
 
     .error {
       padding: 18px;
-      border: 1px solid rgba(251, 113, 133, .25);
+      border: 1px solid rgba(251,113,133,.25);
       border-left: 4px solid var(--red);
       border-radius: 16px;
-      background: rgba(127, 29, 29, .18);
+      background: rgba(127,29,29,.18);
       color: #fecdd3;
     }
 
@@ -427,7 +432,7 @@
       color: var(--muted);
     }
 
-    .footer-line+.footer-line {
+    .footer-line + .footer-line {
       margin-top: 7px;
     }
 
@@ -487,147 +492,151 @@
 
 <body>
 
-  <main class="wrap">
+<main class="wrap">
 
-    <header class="hero">
-      <div class="eyebrow">SEPA / Kosava Open Data</div>
+  <header class="hero">
+    <div class="eyebrow">SEPA / Kosava Open Data</div>
 
-      <h1>Niš — Kvalitet vazduha</h1>
+    <h1>Niš — Kvalitet vazduha</h1>
 
-      <p class="intro">
-        Satna merenja sa aktivnih SEPA stanica u Nišu,
-        grupisana po lokalnim danima.
-      </p>
+    <p class="intro">
+      Satna merenja sa aktivnih SEPA stanica u Nišu,
+      grupisana po lokalnim danima.
+    </p>
 
-      <div class="toolbar-row">
-        <div class="period" aria-label="Period">
-          <button class="btn active" data-days="7">7 dana</button>
-          <button class="btn" data-days="30">30 dana</button>
-        </div>
-
-        <div class="live">
-          <span class="live-dot"></span>
-          Automatsko osvežavanje
-        </div>
+    <div class="toolbar-row">
+      <div class="period" aria-label="Period">
+        <button class="btn active" data-days="7">7 dana</button>
+        <button class="btn" data-days="30">30 dana</button>
       </div>
 
-      <div id="status" class="status">Učitavanje…</div>
-    </header>
-
-    <section id="cards" class="grid" aria-live="polite"></section>
-
-    <footer>
-      <div class="footer-line">
-        <strong>Napomena:</strong>
-        Podaci su preliminarni kada SEPA označi
-        <code>data_status=preliminary</code>.
+      <div class="live">
+        <span class="live-dot"></span>
+        Automatsko osvežavanje
       </div>
+    </div>
 
-      <div class="footer-line">
-        „Indikator aplikacije“ nije zvanični SEPA indeks
-        i ne predstavlja proveru zakonskih graničnih vrednosti.
-      </div>
+    <div id="status" class="status">Učitavanje…</div>
+  </header>
 
-      <div class="footer-line">
-        Izvor:
-        <a href="https://opendata.kosava.cloud/api/v1/observations" target="_blank" rel="noreferrer">
-          Kosava Open Data API
-        </a>
-        · metodologija i pragovi dokumentovani u README.
-      </div>
-    </footer>
+  <section id="cards" class="grid" aria-live="polite"></section>
 
-  </main>
+  <footer>
+    <div class="footer-line">
+      <strong>Napomena:</strong>
+      Podaci su preliminarni kada SEPA označi
+      <code>data_status=preliminary</code>.
+    </div>
 
-  <script>
-    const state = {
-      days: 7,
-      cache: {}
+    <div class="footer-line">
+      „Indikator aplikacije“ nije zvanični SEPA indeks
+      i ne predstavlja proveru zakonskih graničnih vrednosti.
+    </div>
+
+    <div class="footer-line">
+      Izvor:
+      <a
+        href="https://opendata.kosava.cloud/api/v1/observations"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Kosava Open Data API
+      </a>
+      · metodologija i pragovi dokumentovani u README.
+    </div>
+  </footer>
+
+</main>
+
+<script>
+const state = {
+  days: 7,
+  cache: {}
+};
+
+const labels = {
+  PM10: 'PM10',
+  'PM2.5': 'PM2.5',
+  NO2: 'NO₂',
+  SO2: 'SO₂',
+  O3: 'O₃'
+};
+
+const buttons = [...document.querySelectorAll('.btn')];
+const cards = document.querySelector('#cards');
+const statusEl = document.querySelector('#status');
+
+function esc(s) {
+  return String(s ?? '').replace(
+    /[&<>"']/g,
+    c => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[c])
+  );
+}
+
+function changeText(current, previous) {
+  if (!current?.indicator || !previous?.indicator) {
+    return {
+      text: '',
+      cls: ''
     };
+  }
 
-    const labels = {
-      PM10: 'PM10',
-      'PM2.5': 'PM2.5',
-      NO2: 'NO₂',
-      SO2: 'SO₂',
-      O3: 'O₃'
+  const c = current.indicator.rank;
+  const p = previous.indicator.rank;
+
+  if (c === p) {
+    return {
+      text: 'Ista kategorija kao prethodnog dana.',
+      cls: ''
     };
+  }
 
-    const buttons = [...document.querySelectorAll('.btn')];
-    const cards = document.querySelector('#cards');
-    const statusEl = document.querySelector('#status');
+  if (c < p) {
+    return {
+      text: 'Poboljšanje u odnosu na prethodni dan.',
+      cls: 'good-change'
+    };
+  }
 
-    function esc(s) {
-      return String(s ?? '').replace(
-        /[&<>"']/g,
-        c => ({
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          '"': '&quot;',
-          "'": '&#39;'
-        }[c])
-      );
-    }
+  return {
+    text: 'Pogoršanje u odnosu na prethodni dan.',
+    cls: 'bad-change'
+  };
+}
 
-    function changeText(current, previous) {
-      if (!current?.indicator || !previous?.indicator) {
-        return {
-          text: '',
-          cls: ''
-        };
-      }
+function isToday(date) {
+  const now = new Date();
 
-      const c = current.indicator.rank;
-      const p = previous.indicator.rank;
+  const local =
+    now.getFullYear() +
+    '-' +
+    String(now.getMonth() + 1).padStart(2, '0') +
+    '-' +
+    String(now.getDate()).padStart(2, '0');
 
-      if (c === p) {
-        return {
-          text: 'Ista kategorija kao prethodnog dana.',
-          cls: ''
-        };
-      }
+  return date === local;
+}
 
-      if (c < p) {
-        return {
-          text: 'Poboljšanje u odnosu na prethodni dan.',
-          cls: 'good-change'
-        };
-      }
+function render(feed) {
+  const days = feed.days
+    .slice()
+    .sort((a, b) => b.date.localeCompare(a.date));
 
-      return {
-        text: 'Pogoršanje u odnosu na prethodni dan.',
-        cls: 'bad-change'
-      };
-    }
+  const html = days.map((d, i) => {
 
-    function isToday(date) {
-      const now = new Date();
+    const prev = days[i + 1];
+    const ind = d.indicator;
+    const cls = ind?.key || '';
+    const change = changeText(d, prev);
 
-      const local =
-        now.getFullYear() +
-        '-' +
-        String(now.getMonth() + 1).padStart(2, '0') +
-        '-' +
-        String(now.getDate()).padStart(2, '0');
-
-      return date === local;
-    }
-
-    function render(feed) {
-      const days = feed.days
-        .slice()
-        .sort((a, b) => b.date.localeCompare(a.date));
-
-      const html = days.map((d, i) => {
-
-        const prev = days[i + 1];
-        const ind = d.indicator;
-        const cls = ind?.key || '';
-        const change = changeText(d, prev);
-
-        const pollutants = Object.entries(d.pollutants || {})
-          .map(([key, p]) => `
+    const pollutants = Object.entries(d.pollutants || {})
+      .map(([key, p]) => `
         <div class="pollutant">
           <div class="name">
             ${labels[key] || esc(key)}
@@ -635,8 +644,8 @@
 
           <div class="value">
             ${Number(p.value).toLocaleString('sr-RS', {
-            maximumFractionDigits: 2
-          })}
+              maximumFractionDigits: 2
+            })}
             ${esc(p.unit || '')}
           </div>
 
@@ -647,11 +656,11 @@
           </div>
         </div>
       `)
-          .join('');
+      .join('');
 
-        const today = isToday(d.date);
+    const today = isToday(d.date);
 
-        return `
+    return `
       <article class="day ${esc(cls)}">
 
         <div class="day-head">
@@ -662,14 +671,14 @@
             </div>
 
             ${today
-            ? '<span class="today-label">Danas</span>'
-            : ''}
+              ? '<span class="today-label">Danas</span>'
+              : ''}
           </div>
 
           <div class="badge">
             ${ind
-            ? esc(ind.label)
-            : 'Nema dovoljno podataka'}
+              ? esc(ind.label)
+              : 'Nema dovoljno podataka'}
           </div>
 
         </div>
@@ -683,8 +692,8 @@
 
             <strong>
               ${ind
-            ? esc(ind.label)
-            : 'Nema podataka'}
+                ? esc(ind.label)
+                : 'Nema podataka'}
             </strong>
           </div>
 
@@ -695,8 +704,9 @@
         </div>
 
         <div class="pollutants">
-          ${pollutants ||
-          '<div class="empty">Nema podataka za prikaz.</div>'
+          ${
+            pollutants ||
+            '<div class="empty">Nema podataka za prikaz.</div>'
           }
         </div>
 
@@ -706,92 +716,93 @@
             ${d.observation_count || 0} satnih zapisa
           </span>
 
-          ${d.data_status === 'preliminary'
-            ? '<span class="preliminary">Preliminarni podaci</span>'
-            : ''
+          ${
+            d.data_status === 'preliminary'
+              ? '<span class="preliminary">Preliminarni podaci</span>'
+              : ''
           }
 
         </div>
 
       </article>
     `;
-      }).join('');
+  }).join('');
 
-      cards.innerHTML =
-        html ||
-        '<div class="empty">Nema dostupnih dana.</div>';
+  cards.innerHTML =
+    html ||
+    '<div class="empty">Nema dostupnih dana.</div>';
 
-      const generated = new Date(feed.generated_at_utc);
+  const generated = new Date(feed.generated_at_utc);
 
-      const stationCount = Array.isArray(feed.stations)
-        ? feed.stations.length
-        : 0;
+  const stationCount = Array.isArray(feed.stations)
+    ? feed.stations.length
+    : 0;
 
-      statusEl.textContent =
-        `Osveženo: ${generated.toLocaleString('sr-RS')} · ` +
-        `${stationCount} Niš stanice` +
-        `${feed.data_status === 'preliminary'
-          ? ' · preliminarni podaci'
-          : ''}`;
+  statusEl.textContent =
+    `Osveženo: ${generated.toLocaleString('sr-RS')} · ` +
+    `${stationCount} Niš stanice` +
+    `${feed.data_status === 'preliminary'
+      ? ' · preliminarni podaci'
+      : ''}`;
+}
+
+async function load(days) {
+  statusEl.textContent = 'Učitavanje…';
+  cards.innerHTML = '';
+
+  try {
+    if (!state.cache[days]) {
+
+      const response = await fetch(
+        `data/nis-${days}d.json?${Date.now()}`,
+        {
+          cache: 'no-store'
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      state.cache[days] = await response.json();
     }
 
-    async function load(days) {
-      statusEl.textContent = 'Učitavanje…';
-      cards.innerHTML = '';
+    render(state.cache[days]);
 
-      try {
-        if (!state.cache[days]) {
+  } catch (error) {
 
-          const response = await fetch(
-            `data/nis-${days}d.json?${Date.now()}`,
-            {
-              cache: 'no-store'
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
-          }
-
-          state.cache[days] = await response.json();
-        }
-
-        render(state.cache[days]);
-
-      } catch (error) {
-
-        cards.innerHTML = `
+    cards.innerHTML = `
       <div class="error">
         Podaci trenutno nisu dostupni.
         ${esc(error.message)}
       </div>
     `;
 
-        statusEl.textContent =
-          'Greška pri učitavanju podataka.';
-      }
-    }
+    statusEl.textContent =
+      'Greška pri učitavanju podataka.';
+  }
+}
 
-    buttons.forEach(button => {
+buttons.forEach(button => {
 
-      button.addEventListener('click', () => {
+  button.addEventListener('click', () => {
 
-        buttons.forEach(x =>
-          x.classList.remove('active')
-        );
+    buttons.forEach(x =>
+      x.classList.remove('active')
+    );
 
-        button.classList.add('active');
+    button.classList.add('active');
 
-        state.days = Number(button.dataset.days);
+    state.days = Number(button.dataset.days);
 
-        load(state.days);
-      });
+    load(state.days);
+  });
 
-    });
+});
 
-    load(7);
-  </script>
+load(7);
+</script>
 
 </body>
-
 </html>
+
