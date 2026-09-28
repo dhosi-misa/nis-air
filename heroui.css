@@ -751,11 +751,13 @@ h1 {
 
 
   .site-header {
-    border-radius: 10px;
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #27272a;
-    background: #18181b;
+    padding: 25px;
+    --quality-color: #71717a;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card);
+    margin: 20px 0;
   }
 
 
