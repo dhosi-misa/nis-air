@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="SEPA/Kosava podaci o kvalitetu vazduha u Nišu.">
+  <title>Niš — Kvalitet vazduha</title>
+  <style>
+    :root{--bg:#07111f;--panel:#0d1a2b;--panel2:#11233a;--text:#eef5ff;--muted:#9fb0c7;--line:#20334c;--accent:#6ee7b7;--shadow:0 18px 50px rgba(0,0,0,.22)}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#12263f 0,#07111f 48%,#050b14 100%);color:var(--text);font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    .wrap{width:min(980px,calc(100% - 28px));margin:auto}.hero{padding:42px 0 22px}.eyebrow{text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-size:.75rem;font-weight:800}.hero h1{font-size:clamp(2rem,7vw,4rem);line-height:1;margin:.35rem 0 .75rem}.hero p{margin:0;color:var(--muted);max-width:720px}.toolbar{display:flex;gap:8px;margin:22px 0 10px}.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 15px;border-radius:12px;font-weight:750;cursor:pointer}.btn.active{background:var(--text);color:#08111e}.status{color:var(--muted);font-size:.85rem;margin:8px 0 18px}.grid{display:grid;gap:14px}.day{background:linear-gradient(145deg,rgba(17,35,58,.96),rgba(9,22,37,.96));border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:18px;padding:18px;box-shadow:var(--shadow)}.day.good{border-left-color:#22c55e}.day.acceptable{border-left-color:#84cc16}.day.moderate{border-left-color:#facc15}.day.polluted{border-left-color:#fb923c}.day.very-polluted{border-left-color:#f43f5e}.day.extreme{border-left-color:#c084fc}.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.date{font-weight:800;font-size:1.05rem;text-transform:capitalize}.badge{font-size:.76rem;font-weight:800;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.08);white-space:nowrap}.indicator{margin:10px 0 16px}.indicator strong{font-size:1.55rem}.change{font-size:.85rem;color:var(--muted);margin-top:3px}.pollutants{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:9px}.pollutant{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.06);border-radius:13px;padding:11px}.pollutant .name{color:var(--muted);font-size:.78rem}.pollutant .value{font-size:1.05rem;font-weight:800;margin-top:2px}.pollutant .meta{color:#8294aa;font-size:.72rem;margin-top:3px}.empty{padding:28px;border:1px dashed var(--line);border-radius:16px;color:var(--muted)}footer{padding:28px 0 44px;color:var(--muted);font-size:.8rem}footer a{color:inherit}.error{border-left:4px solid #fb7185;padding:14px;background:#28121b;border-radius:12px}
+    @media(min-width:700px){.hero{padding-top:60px}.grid{grid-template-columns:1fr 1fr}.day:first-child{grid-column:1/-1}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="eyebrow">SEPA / Kosava Open Data</div>
+      <h1>Niš — Kvalitet vazduha</h1>
+      <p>Pregled poslednjih satnih merenja grupisanih po lokalnim danima. Bez direktnog poziva API-ju iz browsera.</p>
+      <nav class="toolbar" aria-label="Period"><button class="btn active" data-days="7">7 dana</button><button class="btn" data-days="30">30 dana</button></nav>
+      <div id="status" class="status">Učitavanje…</div>
+    </header>
+    <section id="cards" class="grid" aria-live="polite"></section>
+    <footer>
+      <div>Podaci su preliminarni kada SEPA označi <code>data_status=preliminary</code>. Aplikacioni indikator nije zvanični SEPA indeks i ne predstavlja proveru zakonskih graničnih vrednosti.</div>
+      <div style="margin-top:8px">Izvor: <a href="https://opendata.kosava.cloud/api/v1/observations" target="_blank" rel="noreferrer">Kosava Open Data API</a> · metodologija i pragovi dokumentovani u README.</div>
+    </footer>
+  </main>
+<script>
+const state={days:7, cache:{}};
+const labels={PM10:'PM10', 'PM2.5':'PM2.5', NO2:'NO₂', SO2:'SO₂', O3:'O₃'};
+const buttons=[...document.querySelectorAll('.btn')];
+const cards=document.querySelector('#cards'), statusEl=document.querySelector('#status');
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function pct(a,b){if(a==null||b==null||a===0)return null;return ((b-a)/a)*100}
+function changeText(current,previous){
+  if(!current?.indicator||!previous?.indicator)return '';
+  const c=current.indicator.rank,p=previous.indicator.rank;
+  if(c===p)return 'Promena: ista kategorija kao prethodnog dana.';
+  return c<p?'Poboljšanje u odnosu na prethodni dan.':'Pogoršanje u odnosu na prethodni dan.';
+}
+function render(feed){
+  const days=feed.days.slice().sort((a,b)=>b.date.localeCompare(a.date));
+  const html=days.map((d,i)=>{
+    const prev=days[i+1]; const ind=d.indicator; const cls=ind?.key||'';
+    const pollutants=Object.entries(d.pollutants||{}).map(([key,p])=>`<div class="pollutant"><div class="name">${labels[key]||esc(key)}</div><div class="value">${Number(p.value).toLocaleString('sr-RS',{maximumFractionDigits:2})} ${esc(p.unit||'')}</div><div class="meta">maks. satna · ${esc(p.station_name)} · ${esc(p.time_local)}</div></div>`).join('');
+    return `<article class="day ${cls}"><div class="top"><div class="date">${esc(d.date_label)}</div><div class="badge">${ind?esc(ind.label):'Nema dovoljno podataka'}</div></div><div class="indicator">${ind?`<strong>${esc(ind.label)}</strong><div class="change">${esc(changeText(d,prev))}</div>`:'<strong>Nema podataka</strong>'}</div><div class="pollutants">${pollutants||'<div class="empty">Nema podataka za prikaz.</div>'}</div><div class="status">${d.data_status==='preliminary'?'Preliminarni podaci · ':''}${d.observation_count} satnih zapisa</div></article>`;
+  }).join('');
+  cards.innerHTML=html||'<div class="empty">Nema dostupnih dana.</div>';
+  const generated=new Date(feed.generated_at_utc); statusEl.textContent=`Osveženo: ${generated.toLocaleString('sr-RS')} · ${feed.stations.length} Niš stanice · ${feed.data_status==='preliminary'?'preliminarni podaci':''}`;
+}
+async function load(days){
+  statusEl.textContent='Učitavanje…'; cards.innerHTML='';
+  try{ if(!state.cache[days]){const r=await fetch(`data/nis-${days}d.json?${Date.now()}`,{cache:'no-store'});if(!r.ok)throw new Error(`HTTP ${r.status}`);state.cache[days]=await r.json()} render(state.cache[days]); }
+  catch(e){cards.innerHTML=`<div class="error">Podaci trenutno nisu dostupni. ${esc(e.message)}</div>`;statusEl.textContent='Greška pri učitavanju podataka.'}
+}
+buttons.forEach(b=>b.addEventListener('click',()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');state.days=Number(b.dataset.days);load(state.days)}));
+load(7);
+</script>
+</body>
+</html>
