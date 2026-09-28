@@ -3,51 +3,65 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="SEPA/Kosava podaci o kvalitetu vazduha u Nišu.">
+  <meta name="theme-color" content="#09090b">
+  <meta
+    name="description"
+    content="SEPA/Kosava podaci o kvalitetu vazduha u Nišu."
+  >
   <title>Niš — Kvalitet vazduha</title>
 
   <style>
     :root {
-      --bg: #f7f7f5;
-      --card: #ffffff;
-      --text: #111111;
-      --muted: #737373;
-      --soft: #a3a3a3;
-      --line: #e5e5e5;
-      --line-dark: #d4d4d4;
+      /* --------------------------------------------------
+         BASE / TAILWIND-LIKE DARK PALETTE
+      -------------------------------------------------- */
 
-      --green: #4dbd79;
-      --lime: #9bdc32;
-      --yellow: #f4cf3f;
-      --orange: #f39a43;
-      --red: #ee5360;
-      --purple: #b85cdd;
+      --bg: #09090b;
+      --card: #111113;
+      --card-soft: #18181b;
 
-      --gradient:
-        linear-gradient(
-          90deg,
-          var(--green) 0%,
-          var(--lime) 22%,
-          var(--yellow) 42%,
-          var(--orange) 62%,
-          var(--red) 80%,
-          var(--purple) 100%
-        );
+      --text: #fafafa;
+      --text-soft: #d4d4d8;
+      --muted: #a1a1aa;
+      --soft: #71717a;
+
+      --line: rgba(255,255,255,.08);
+      --line-strong: rgba(255,255,255,.13);
+
+      /* Air quality colors */
+
+      --green: #4ade80;
+      --lime: #a3e635;
+      --yellow: #facc15;
+      --orange: #fb923c;
+      --red: #f87171;
+      --purple: #c084fc;
     }
+
 
     * {
       box-sizing: border-box;
     }
 
+
     html {
       scroll-behavior: smooth;
     }
 
+
     body {
       margin: 0;
-      background: var(--bg);
+
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(255,255,255,.045),
+          transparent 38%
+        ),
+        var(--bg);
+
       color: var(--text);
+
       font-family:
         Inter,
         ui-sans-serif,
@@ -56,17 +70,32 @@
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
+
       -webkit-font-smoothing: antialiased;
     }
+
 
     button {
       font: inherit;
     }
 
+
+    code {
+      font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        monospace;
+    }
+
+
     .wrap {
       width: min(1080px, calc(100% - 32px));
       margin: 0 auto;
     }
+
 
     /* --------------------------------------------------
        HEADER
@@ -76,29 +105,40 @@
       padding: 48px 0 28px;
     }
 
+
     .eyebrow {
-      color: #666;
-      font-size: .72rem;
+      color: #71717a;
+
+      font-size: .7rem;
       font-weight: 800;
-      letter-spacing: .12em;
+
+      letter-spacing: .13em;
       text-transform: uppercase;
     }
 
+
     h1 {
       margin: 10px 0 12px;
-      font-size: clamp(2.3rem, 7vw, 4.6rem);
+
+      font-size:
+        clamp(2.3rem, 7vw, 4.6rem);
+
       line-height: .98;
       letter-spacing: -.055em;
       font-weight: 800;
     }
 
+
     .intro {
       max-width: 650px;
       margin: 0;
+
       color: var(--muted);
+
       font-size: .95rem;
       line-height: 1.6;
     }
+
 
     /* --------------------------------------------------
        CONTROLS
@@ -108,96 +148,201 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 16px;
+
       margin-top: 30px;
       padding-top: 18px;
-      border-top: 1px solid var(--line);
+
+      border-top:
+        1px solid var(--line);
     }
+
 
     .period {
       display: inline-flex;
+
       padding: 3px;
-      border: 1px solid var(--line-dark);
+
+      border:
+        1px solid var(--line-strong);
+
       border-radius: 999px;
-      background: #fff;
+
+      background:
+        rgba(255,255,255,.035);
     }
+
 
     .btn {
       border: 0;
       border-radius: 999px;
+
       padding: 8px 17px;
+
       background: transparent;
-      color: #666;
+      color: var(--muted);
+
       cursor: pointer;
+
       font-size: .78rem;
       font-weight: 750;
-      transition: .18s ease;
+
+      transition:
+        background .18s ease,
+        color .18s ease;
     }
 
+
     .btn:hover {
+      color: #fff;
+    }
+
+
+    .btn.active {
+      background: #fafafa;
       color: #111;
     }
 
-    .btn.active {
-      background: #111;
-      color: #fff;
-    }
 
     .live {
       display: flex;
       align-items: center;
+
       gap: 7px;
+
       color: var(--soft);
+
       font-size: .7rem;
       white-space: nowrap;
     }
 
+
     .live-dot {
       width: 6px;
       height: 6px;
+
       border-radius: 50%;
-      background: #55bd7c;
+
+      background: var(--green);
+
+      box-shadow:
+        0 0 0 3px rgba(74,222,128,.08);
     }
+
 
     .status {
       min-height: 20px;
-      margin: 10px 0 22px;
+
+      margin:
+        10px 0 22px;
+
       color: var(--soft);
+
       font-size: .72rem;
     }
 
+
     /* --------------------------------------------------
-       MAIN CARD
+       GRID
     -------------------------------------------------- */
 
     .grid {
       display: grid;
+
       gap: 16px;
+
       padding-bottom: 25px;
     }
 
+
+    /* --------------------------------------------------
+       DAY CARD
+    -------------------------------------------------- */
+
     .day {
+      /*
+        JS upisuje:
+        --quality-color
+        --quality-alpha
+      */
+
+      --quality-color: #71717a;
+      --quality-alpha: .08;
+
       position: relative;
       overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 17px;
-      background: var(--card);
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          180deg,
+
+          color-mix(
+            in srgb,
+            var(--quality-color)
+            calc(var(--quality-alpha) * 100%),
+            transparent
+          ) 0%,
+
+          rgba(17,17,19,.96) 38%,
+
+          var(--card) 78%,
+
+          var(--card) 100%
+        );
+
+      box-shadow:
+        0 1px 2px rgba(0,0,0,.25);
+
+      isolation: isolate;
     }
 
+
     /*
-      Thin gradient line at the top of every card.
+      Dodatni veoma mekan glow.
+      Nema linije — boja samo "ulazi" u karticu.
     */
 
     .day::before {
       content: "";
-      display: block;
-      height: 4px;
-      background: var(--gradient);
+
+      position: absolute;
+
+      inset:
+        -35% -10% auto;
+
+      height: 65%;
+
+      background:
+        radial-gradient(
+          ellipse at 50% 0%,
+          color-mix(
+            in srgb,
+            var(--quality-color)
+            calc(var(--quality-alpha) * 100%),
+            transparent
+          ),
+          transparent 70%
+        );
+
+      pointer-events: none;
+
+      opacity: .9;
     }
 
+
     .day-content {
+      position: relative;
+      z-index: 1;
+
       padding: 22px;
     }
+
 
     /* --------------------------------------------------
        DAY HEADER
@@ -207,196 +352,268 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
+
       gap: 15px;
     }
 
+
     .date {
+      color: #f4f4f5;
+
       font-size: .95rem;
       font-weight: 800;
+
       letter-spacing: -.01em;
       text-transform: capitalize;
     }
 
+
     .today {
-      margin-top: 3px;
+      margin-top: 4px;
+
       color: var(--soft);
-      font-size: .67rem;
+
+      font-size: .64rem;
       font-weight: 700;
-      letter-spacing: .07em;
+
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
 
+
+    /*
+      Mali badge ostaje, ali ne nosi celu vizuelnu priču.
+    */
+
     .badge {
       padding: 5px 9px;
-      border: 1px solid var(--line);
+
+      border:
+        1px solid
+        color-mix(
+          in srgb,
+          var(--quality-color) 22%,
+          rgba(255,255,255,.08)
+        );
+
       border-radius: 999px;
-      background: #fafafa;
-      color: #333;
+
+      background:
+        color-mix(
+          in srgb,
+          var(--quality-color) 8%,
+          rgba(255,255,255,.025)
+        );
+
+      color: #e4e4e7;
+
       font-size: .67rem;
       font-weight: 750;
+
       white-space: nowrap;
     }
+
 
     /* --------------------------------------------------
        INDICATOR
     -------------------------------------------------- */
 
     .indicator-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(240px, 1.2fr);
-      align-items: end;
-      gap: 35px;
-      margin-top: 25px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      margin-top: 30px;
     }
+
 
     .indicator-title {
       color: var(--soft);
-      font-size: .66rem;
+
+      font-size: .63rem;
       font-weight: 750;
+
       letter-spacing: .08em;
       text-transform: uppercase;
     }
 
+
     .indicator-value {
-      margin-top: 5px;
-      font-size: 1.65rem;
+      margin-top: 6px;
+
+      color: #fafafa;
+
+      font-size: 1.75rem;
       line-height: 1;
+
       font-weight: 800;
-      letter-spacing: -.04em;
+
+      letter-spacing: -.045em;
     }
+
 
     .change {
       margin-top: 9px;
-      color: var(--muted);
-      font-size: .72rem;
+
+      color: var(--soft);
+
+      font-size: .7rem;
     }
+
 
     .change.improved {
-      color: #29985b;
+      color: #4ade80;
     }
+
 
     .change.worse {
-      color: #d66b25;
+      color: #fb923c;
     }
 
-    /* --------------------------------------------------
-       GRADIENT SCALE
-    -------------------------------------------------- */
 
-    .scale {
-      position: relative;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--gradient);
-    }
+    /*
+      Skala je potpuno uklonjena.
+    */
 
-    .scale-marker {
-      position: absolute;
-      top: 50%;
-      width: 3px;
-      height: 17px;
-      border-radius: 2px;
-      background: #111;
-      transform: translate(-50%, -50%);
-      box-shadow:
-        0 0 0 2px rgba(255,255,255,.9);
-    }
-
+    .scale,
+    .scale-marker,
     .scale-labels {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 7px;
-      color: var(--soft);
-      font-size: .58rem;
+      display: none;
     }
+
 
     /* --------------------------------------------------
        POLLUTANTS
     -------------------------------------------------- */
 
     .pollutants-title {
-      margin-top: 26px;
+      margin-top: 27px;
       margin-bottom: 10px;
+
       color: var(--soft);
-      font-size: .66rem;
+
+      font-size: .63rem;
       font-weight: 750;
+
       letter-spacing: .08em;
       text-transform: uppercase;
     }
 
+
     .pollutants {
       display: grid;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(130px, 1fr)
-      );
-      border-top: 1px solid var(--line);
-      border-left: 1px solid var(--line);
+
+      grid-template-columns:
+        repeat(auto-fit, minmax(130px, 1fr));
+
+      border-top:
+        1px solid var(--line);
+
+      border-left:
+        1px solid var(--line);
+
+      background:
+        rgba(0,0,0,.08);
     }
+
 
     .pollutant {
       min-width: 0;
+
       padding: 13px;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+
+      border-right:
+        1px solid var(--line);
+
+      border-bottom:
+        1px solid var(--line);
     }
 
+
     .pollutant-name {
-      color: var(--muted);
+      color: #a1a1aa;
+
       font-size: .68rem;
       font-weight: 700;
     }
 
+
     .pollutant-value {
       margin-top: 3px;
+
+      color: #f4f4f5;
+
       font-size: 1rem;
       font-weight: 800;
+
       letter-spacing: -.015em;
     }
 
+
     .pollutant-unit {
       margin-left: 2px;
-      color: var(--muted);
+
+      color: #71717a;
+
       font-size: .65rem;
       font-weight: 500;
     }
 
+
     .pollutant-meta {
       overflow: hidden;
+
       margin-top: 4px;
-      color: var(--soft);
+
+      color: #52525b;
+
       font-size: .58rem;
       line-height: 1.35;
+
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
+
     /* --------------------------------------------------
-       FOOTER
+       DAY FOOTER
     -------------------------------------------------- */
 
     .day-footer {
       display: flex;
       justify-content: space-between;
+
       gap: 12px;
+
       margin-top: 15px;
-      color: var(--soft);
+
+      color: #52525b;
+
       font-size: .62rem;
     }
+
 
     .preliminary {
       display: flex;
       align-items: center;
+
       gap: 5px;
     }
 
+
     .preliminary::before {
       content: "";
+
       width: 5px;
       height: 5px;
+
       border-radius: 50%;
+
       background: var(--yellow);
     }
+
 
     /* --------------------------------------------------
        EMPTY / ERROR
@@ -404,21 +621,35 @@
 
     .empty {
       padding: 30px;
-      border: 1px dashed var(--line-dark);
+
+      border:
+        1px dashed var(--line-strong);
+
       border-radius: 15px;
-      background: #fff;
+
+      background: var(--card);
+
       color: var(--muted);
+
       font-size: .85rem;
     }
 
+
     .error {
       padding: 18px;
-      border: 1px solid #f0c9cf;
+
+      border:
+        1px solid rgba(248,113,113,.2);
+
       border-radius: 15px;
-      background: #fff;
-      color: #a33b48;
+
+      background: #181113;
+
+      color: #fca5a5;
+
       font-size: .82rem;
     }
+
 
     /* --------------------------------------------------
        FOOTER
@@ -426,22 +657,28 @@
 
     footer {
       padding: 25px 0 45px;
-      color: var(--soft);
+
+      color: #52525b;
+
       font-size: .68rem;
       line-height: 1.7;
     }
+
 
     footer p {
       margin: 5px 0;
     }
 
+
     footer strong {
-      color: #666;
+      color: #71717a;
     }
 
+
     footer a {
-      color: #555;
+      color: #a1a1aa;
     }
+
 
     /* --------------------------------------------------
        DESKTOP
@@ -450,8 +687,10 @@
     @media (min-width: 720px) {
 
       .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
       }
+
 
       /*
         Today's card spans the complete width.
@@ -461,19 +700,23 @@
         grid-column: 1 / -1;
       }
 
+
       .day:first-child .day-content {
         padding: 25px;
       }
 
+
       .day:first-child .indicator-value {
         font-size: 2rem;
       }
+
 
       .day:first-child .pollutants {
         grid-template-columns:
           repeat(5, minmax(0, 1fr));
       }
     }
+
 
     /* --------------------------------------------------
        MOBILE
@@ -482,34 +725,42 @@
     @media (max-width: 600px) {
 
       .wrap {
-        width: min(100% - 22px, 1080px);
+        width:
+          min(100% - 22px, 1080px);
       }
+
 
       header {
         padding-top: 30px;
       }
 
+
       .controls {
         align-items: flex-end;
       }
+
 
       .live {
         font-size: .62rem;
       }
 
+
       .indicator-row {
-        grid-template-columns: 1fr;
-        gap: 18px;
+        align-items: flex-start;
       }
+
 
       .day-content {
         padding: 18px;
       }
 
+
       .pollutants {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
       }
     }
+
 
     @media (max-width: 380px) {
 
@@ -518,16 +769,20 @@
         align-items: flex-start;
       }
 
+
       .live {
         align-self: flex-end;
       }
 
+
       .pollutants {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+          1fr 1fr;
       }
     }
   </style>
 </head>
+
 
 <body>
 
@@ -539,18 +794,24 @@
       SEPA / Kosava Open Data
     </div>
 
+
     <h1>
       Niš — Kvalitet vazduha
     </h1>
+
 
     <p class="intro">
       Satna merenja sa aktivnih SEPA stanica u Nišu,
       grupisana po lokalnim danima.
     </p>
 
+
     <div class="controls">
 
-      <div class="period" aria-label="Period">
+      <div
+        class="period"
+        aria-label="Period"
+      >
 
         <button
           class="btn active"
@@ -558,6 +819,7 @@
         >
           7 dana
         </button>
+
 
         <button
           class="btn"
@@ -568,12 +830,17 @@
 
       </div>
 
+
       <div class="live">
+
         <span class="live-dot"></span>
+
         Automatsko osvežavanje
+
       </div>
 
     </div>
+
 
     <div
       id="status"
@@ -584,11 +851,13 @@
 
   </header>
 
+
   <section
     id="cards"
     class="grid"
     aria-live="polite"
   ></section>
+
 
   <footer>
 
@@ -598,10 +867,12 @@
       <code>data_status=preliminary</code>.
     </p>
 
+
     <p>
       „Indikator aplikacije“ nije zvanični SEPA indeks
       i ne predstavlja proveru zakonskih graničnih vrednosti.
     </p>
+
 
     <p>
       Izvor:
@@ -619,11 +890,14 @@
 
 </main>
 
+
 <script>
+
 const state = {
   days: 7,
   cache: {}
 };
+
 
 const labels = {
   PM10: 'PM10',
@@ -633,20 +907,29 @@ const labels = {
   O3: 'O₃'
 };
 
+
 const buttons = [
   ...document.querySelectorAll('.btn')
 ];
 
+
 const cards =
   document.querySelector('#cards');
+
 
 const statusEl =
   document.querySelector('#status');
 
 
+/* --------------------------------------------------
+   SECURITY
+-------------------------------------------------- */
+
 function esc(value) {
+
   return String(value ?? '').replace(
     /[&<>"']/g,
+
     character => ({
       '&': '&amp;',
       '<': '&lt;',
@@ -658,44 +941,87 @@ function esc(value) {
 }
 
 
-/*
-  Maps the application's indicator rank
-  onto the common visual gradient.
+/* --------------------------------------------------
+   QUALITY COLOR
+--------------------------------------------------
 
-  This is ONLY a visual position.
-  It is not an AQI value.
-*/
-function getScalePosition(indicator) {
+   Rank:
+
+   1 = green
+   2 = lime
+   3 = yellow
+   4 = orange
+   5 = red
+   6 = purple
+
+   Boja se sada koristi kao vizuelni jezik
+   cele kartice.
+-------------------------------------------------- */
+
+function getQualityStyle(indicator) {
 
   if (!indicator) {
-    return 0;
+    return {
+      color: '#71717a',
+      alpha: .045
+    };
   }
 
-  const rank = Number(indicator.rank);
+
+  const rank =
+    Number(indicator.rank);
+
 
   if (!Number.isFinite(rank)) {
-    return 0;
+    return {
+      color: '#71717a',
+      alpha: .045
+    };
   }
 
+
+  const colors = {
+    1: '#4ade80',
+    2: '#a3e635',
+    3: '#facc15',
+    4: '#fb923c',
+    5: '#f87171',
+    6: '#c084fc'
+  };
+
+
   /*
-    Six possible categories:
-    1 = green
-    2 = lime
-    3 = yellow
-    4 = orange
-    5 = red
-    6 = purple
+    Namerno relativno suptilno.
+
+    Poenta je da kartica bude obojena,
+    ali da tekst i podaci ostanu dominantni.
+
+    Lošiji kvalitet = nešto izraženija boja.
   */
 
-  return Math.max(
-    0,
-    Math.min(
-      100,
-      ((rank - 1) / 5) * 100
-    )
-  );
+  const alphaByRank = {
+    1: .075,
+    2: .08,
+    3: .09,
+    4: .105,
+    5: .12,
+    6: .135
+  };
+
+
+  return {
+    color:
+      colors[rank] || '#71717a',
+
+    alpha:
+      alphaByRank[rank] || .06
+  };
 }
 
+
+/* --------------------------------------------------
+   CHANGE
+-------------------------------------------------- */
 
 function changeText(current, previous) {
 
@@ -709,11 +1035,14 @@ function changeText(current, previous) {
     };
   }
 
+
   const currentRank =
     Number(current.indicator.rank);
 
+
   const previousRank =
     Number(previous.indicator.rank);
+
 
   if (
     !Number.isFinite(currentRank) ||
@@ -725,165 +1054,281 @@ function changeText(current, previous) {
     };
   }
 
+
   if (currentRank === previousRank) {
+
     return {
-      text: 'Ista kategorija kao prethodnog dana.',
+      text:
+        'Ista kategorija kao prethodnog dana.',
+
       className: ''
     };
   }
 
+
   if (currentRank < previousRank) {
+
     return {
-      text: 'Poboljšanje u odnosu na prethodni dan.',
+      text:
+        'Poboljšanje u odnosu na prethodni dan.',
+
       className: 'improved'
     };
   }
 
+
   return {
-    text: 'Pogoršanje u odnosu na prethodni dan.',
+    text:
+      'Pogoršanje u odnosu na prethodni dan.',
+
     className: 'worse'
   };
 }
 
 
+/* --------------------------------------------------
+   TODAY
+-------------------------------------------------- */
+
 function isToday(date) {
 
-  const now = new Date();
+  const now =
+    new Date();
+
 
   const localDate =
     now.getFullYear() +
     '-' +
-    String(now.getMonth() + 1).padStart(2, '0') +
+    String(
+      now.getMonth() + 1
+    ).padStart(2, '0') +
     '-' +
-    String(now.getDate()).padStart(2, '0');
+    String(
+      now.getDate()
+    ).padStart(2, '0');
+
 
   return date === localDate;
 }
 
 
+/* --------------------------------------------------
+   RENDER
+-------------------------------------------------- */
+
 function render(feed) {
 
-  const days = feed.days
-    .slice()
-    .sort(
-      (a, b) =>
-        b.date.localeCompare(a.date)
-    );
+  const days =
+    feed.days
+      .slice()
+      .sort(
+        (a, b) =>
+          b.date.localeCompare(a.date)
+      );
 
 
-  const html = days.map((day, index) => {
+  const html =
+    days.map((day, index) => {
 
-    const previous =
-      days[index + 1];
+      const previous =
+        days[index + 1];
 
-    const indicator =
-      day.indicator;
 
-    const change =
-      changeText(day, previous);
+      const indicator =
+        day.indicator;
 
-    const position =
-      getScalePosition(indicator);
 
-    const pollutants =
-      Object.entries(
-        day.pollutants || {}
-      )
-      .map(([key, pollutant]) => {
+      const change =
+        changeText(
+          day,
+          previous
+        );
 
-        const value =
-          Number(pollutant.value)
-            .toLocaleString(
-              'sr-RS',
-              {
-                maximumFractionDigits: 2
-              }
+
+      const quality =
+        getQualityStyle(
+          indicator
+        );
+
+
+      const pollutants =
+        Object.entries(
+          day.pollutants || {}
+        )
+        .map(([key, pollutant]) => {
+
+          const numericValue =
+            Number(
+              pollutant.value
             );
 
-        return `
-          <div class="pollutant">
 
-            <div class="pollutant-name">
-              ${labels[key] || esc(key)}
-            </div>
-
-            <div class="pollutant-value">
-              ${value}
-              <span class="pollutant-unit">
-                ${esc(pollutant.unit || '')}
-              </span>
-            </div>
-
-            <div class="pollutant-meta">
-              maksimalna satna vrednost ·
-              ${esc(pollutant.station_name)} ·
-              ${esc(pollutant.time_local)}
-            </div>
-
-          </div>
-        `;
-      })
-      .join('');
+          const value =
+            Number.isFinite(numericValue)
+              ? numericValue.toLocaleString(
+                  'sr-RS',
+                  {
+                    maximumFractionDigits: 2
+                  }
+                )
+              : '—';
 
 
-    const today =
-      isToday(day.date);
+          return `
+            <div class="pollutant">
 
-
-    return `
-      <article class="day">
-
-        <div class="day-content">
-
-          <div class="day-head">
-
-            <div>
-
-              <div class="date">
-                ${esc(day.date_label)}
+              <div class="pollutant-name">
+                ${labels[key] || esc(key)}
               </div>
 
-              ${
-                today
-                  ? '<div class="today">Danas</div>'
-                  : ''
-              }
 
-            </div>
+              <div class="pollutant-value">
+                ${value}
 
-            <div class="badge">
-              ${
-                indicator
-                  ? esc(indicator.label)
-                  : 'Nema dovoljno podataka'
-              }
-            </div>
-
-          </div>
-
-
-          <div class="indicator-row">
-
-            <div>
-
-              <div class="indicator-title">
-                Indikator aplikacije
+                <span class="pollutant-unit">
+                  ${esc(pollutant.unit || '')}
+                </span>
               </div>
 
-              <div class="indicator-value">
+
+              <div class="pollutant-meta">
+                maksimalna satna vrednost ·
+                ${esc(pollutant.station_name)} ·
+                ${esc(pollutant.time_local)}
+              </div>
+
+            </div>
+          `;
+
+        })
+        .join('');
+
+
+      const today =
+        isToday(day.date);
+
+
+      return `
+
+        <article
+          class="day"
+
+          style="
+            --quality-color:${quality.color};
+            --quality-alpha:${quality.alpha};
+          "
+        >
+
+          <div class="day-content">
+
+
+            <div class="day-head">
+
+              <div>
+
+                <div class="date">
+                  ${esc(day.date_label)}
+                </div>
+
+
+                ${
+                  today
+                    ? `
+                      <div class="today">
+                        Danas
+                      </div>
+                    `
+                    : ''
+                }
+
+              </div>
+
+
+              <div class="badge">
+
                 ${
                   indicator
                     ? esc(indicator.label)
-                    : 'Nema podataka'
+                    : 'Nema dovoljno podataka'
                 }
+
               </div>
 
+            </div>
+
+
+            <div class="indicator-row">
+
+              <div>
+
+                <div class="indicator-title">
+                  Indikator aplikacije
+                </div>
+
+
+                <div class="indicator-value">
+
+                  ${
+                    indicator
+                      ? esc(indicator.label)
+                      : 'Nema podataka'
+                  }
+
+                </div>
+
+
+                ${
+                  change.text
+                    ? `
+                      <div
+                        class="change ${change.className}"
+                      >
+                        ${esc(change.text)}
+                      </div>
+                    `
+                    : ''
+                }
+
+              </div>
+
+            </div>
+
+
+            <div class="pollutants-title">
+              Dostupni polutanti ·
+              maksimalne satne vrednosti
+            </div>
+
+
+            <div class="pollutants">
+
               ${
-                change.text
+                pollutants ||
+
+                `
+                  <div class="empty">
+                    Nema podataka za ovaj dan.
+                  </div>
+                `
+              }
+
+            </div>
+
+
+            <div class="day-footer">
+
+              <span>
+                ${day.observation_count || 0}
+                satnih zapisa
+              </span>
+
+
+              ${
+                day.data_status === 'preliminary'
                   ? `
-                    <div class="change ${change.className}">
-                      ${esc(change.text)}
-                    </div>
+                    <span class="preliminary">
+                      Preliminarni podaci
+                    </span>
                   `
                   : ''
               }
@@ -891,75 +1336,19 @@ function render(feed) {
             </div>
 
 
-            <div>
-
-              <div class="scale">
-
-                <span
-                  class="scale-marker"
-                  style="left:${position}%"
-                ></span>
-
-              </div>
-
-              <div class="scale-labels">
-                <span>niže</span>
-                <span>više</span>
-              </div>
-
-            </div>
-
           </div>
 
+        </article>
 
-          <div class="pollutants-title">
-            Dostupni polutanti · maksimalne satne vrednosti
-          </div>
+      `;
 
-
-          <div class="pollutants">
-
-            ${
-              pollutants ||
-              `
-                <div class="empty">
-                  Nema podataka za ovaj dan.
-                </div>
-              `
-            }
-
-          </div>
-
-
-          <div class="day-footer">
-
-            <span>
-              ${day.observation_count || 0}
-              satnih zapisa
-            </span>
-
-            ${
-              day.data_status === 'preliminary'
-                ? `
-                  <span class="preliminary">
-                    Preliminarni podaci
-                  </span>
-                `
-                : ''
-            }
-
-          </div>
-
-        </div>
-
-      </article>
-    `;
-
-  }).join('');
+    })
+    .join('');
 
 
   cards.innerHTML =
     html ||
+
     `
       <div class="empty">
         Nema dostupnih dana.
@@ -968,7 +1357,9 @@ function render(feed) {
 
 
   const generated =
-    new Date(feed.generated_at_utc);
+    new Date(
+      feed.generated_at_utc
+    );
 
 
   const stationCount =
@@ -983,6 +1374,7 @@ function render(feed) {
     } · ${
       stationCount
     } Niš stanice` +
+
     (
       feed.data_status === 'preliminary'
         ? ' · preliminarni podaci'
@@ -991,12 +1383,18 @@ function render(feed) {
 }
 
 
+/* --------------------------------------------------
+   LOAD
+-------------------------------------------------- */
+
 async function load(days) {
 
   statusEl.textContent =
     'Učitavanje…';
 
-  cards.innerHTML = '';
+
+  cards.innerHTML =
+    '';
 
 
   try {
@@ -1018,9 +1416,11 @@ async function load(days) {
 
 
       if (!response.ok) {
+
         throw new Error(
           `HTTP ${response.status}`
         );
+
       }
 
 
@@ -1033,14 +1433,21 @@ async function load(days) {
       state.cache[days]
     );
 
+
   } catch (error) {
 
     cards.innerHTML = `
+
       <div class="error">
+
         Podaci trenutno nisu dostupni.
+
         ${esc(error.message)}
+
       </div>
+
     `;
+
 
     statusEl.textContent =
       'Greška pri učitavanju podataka.';
@@ -1048,36 +1455,48 @@ async function load(days) {
 }
 
 
+/* --------------------------------------------------
+   PERIOD BUTTONS
+-------------------------------------------------- */
+
 buttons.forEach(button => {
 
   button.addEventListener(
     'click',
+
     () => {
 
       buttons.forEach(item =>
         item.classList.remove('active')
       );
 
+
       button.classList.add('active');
 
-      state.days =
-        Number(button.dataset.days);
 
-      load(state.days);
+      state.days =
+        Number(
+          button.dataset.days
+        );
+
+
+      load(
+        state.days
+      );
+
     }
   );
 
 });
 
 
-/*
-  Initial load:
-  only 7-day data is requested.
-*/
+/* --------------------------------------------------
+   INITIAL LOAD
+-------------------------------------------------- */
 
 load(7);
+
 </script>
 
 </body>
 </html>
-
