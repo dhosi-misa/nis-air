@@ -1,30 +1,39 @@
-
 <!doctype html>
 <html lang="sr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#08111f">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="SEPA/Kosava podaci o kvalitetu vazduha u Nišu.">
   <title>Niš — Kvalitet vazduha</title>
 
   <style>
     :root {
-      --bg: #06101d;
-      --bg-soft: #0a1727;
-      --card: rgba(14, 29, 48, .78);
-      --card-solid: #0e1d30;
-      --line: rgba(148, 163, 184, .14);
-      --text: #f4f8ff;
-      --muted: #91a3b9;
-      --muted-2: #63758b;
-      --green: #34d399;
-      --lime: #a3e635;
-      --yellow: #facc15;
-      --orange: #fb923c;
-      --red: #fb7185;
-      --purple: #c084fc;
-      --shadow: 0 24px 70px rgba(0, 0, 0, .28);
+      --bg: #f7f7f5;
+      --card: #ffffff;
+      --text: #111111;
+      --muted: #737373;
+      --soft: #a3a3a3;
+      --line: #e5e5e5;
+      --line-dark: #d4d4d4;
+
+      --green: #4dbd79;
+      --lime: #9bdc32;
+      --yellow: #f4cf3f;
+      --orange: #f39a43;
+      --red: #ee5360;
+      --purple: #b85cdd;
+
+      --gradient:
+        linear-gradient(
+          90deg,
+          var(--green) 0%,
+          var(--lime) 22%,
+          var(--yellow) 42%,
+          var(--orange) 62%,
+          var(--red) 80%,
+          var(--purple) 100%
+        );
     }
 
     * {
@@ -37,7 +46,7 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
+      background: var(--bg);
       color: var(--text);
       font-family:
         Inter,
@@ -47,18 +56,7 @@
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
-      background:
-        radial-gradient(
-          circle at 15% -10%,
-          rgba(52, 211, 153, .12),
-          transparent 34%
-        ),
-        radial-gradient(
-          circle at 100% 0%,
-          rgba(96, 165, 250, .11),
-          transparent 30%
-        ),
-        linear-gradient(180deg, #081321 0%, #06101d 55%, #040b14 100%);
+      -webkit-font-smoothing: antialiased;
     }
 
     button {
@@ -66,105 +64,91 @@
     }
 
     .wrap {
-      width: min(1080px, calc(100% - 28px));
-      margin: auto;
+      width: min(1080px, calc(100% - 32px));
+      margin: 0 auto;
     }
 
-    /* ---------- HERO ---------- */
+    /* --------------------------------------------------
+       HEADER
+    -------------------------------------------------- */
 
-    .hero {
-      padding: 28px 0 20px;
+    header {
+      padding: 48px 0 28px;
     }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--green);
+      color: #666;
       font-size: .72rem;
       font-weight: 800;
-      letter-spacing: .14em;
+      letter-spacing: .12em;
       text-transform: uppercase;
     }
 
-    .eyebrow::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 14px rgba(52, 211, 153, .8);
-    }
-
     h1 {
-      margin: 12px 0 10px;
-      max-width: 780px;
-      font-size: clamp(2.35rem, 9vw, 5rem);
-      line-height: .95;
+      margin: 10px 0 12px;
+      font-size: clamp(2.3rem, 7vw, 4.6rem);
+      line-height: .98;
       letter-spacing: -.055em;
+      font-weight: 800;
     }
 
     .intro {
       max-width: 650px;
       margin: 0;
       color: var(--muted);
-      font-size: .98rem;
-      line-height: 1.65;
+      font-size: .95rem;
+      line-height: 1.6;
     }
 
-    /* ---------- TOOLBAR ---------- */
+    /* --------------------------------------------------
+       CONTROLS
+    -------------------------------------------------- */
 
-    .toolbar-row {
+    .controls {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      margin: 25px 0 12px;
+      gap: 16px;
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
     }
 
     .period {
       display: inline-flex;
-      padding: 4px;
-      border: 1px solid var(--line);
-      border-radius: 15px;
-      background: rgba(8, 19, 33, .72);
-      backdrop-filter: blur(16px);
+      padding: 3px;
+      border: 1px solid var(--line-dark);
+      border-radius: 999px;
+      background: #fff;
     }
 
     .btn {
       border: 0;
-      border-radius: 11px;
-      padding: 9px 15px;
-      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 17px;
       background: transparent;
+      color: #666;
       cursor: pointer;
-      font-size: .84rem;
-      font-weight: 800;
-      transition:
-        background .2s ease,
-        color .2s ease,
-        transform .2s ease;
+      font-size: .78rem;
+      font-weight: 750;
+      transition: .18s ease;
     }
 
     .btn:hover {
-      color: var(--text);
-    }
-
-    .btn:active {
-      transform: scale(.97);
+      color: #111;
     }
 
     .btn.active {
-      color: #06101d;
-      background: var(--text);
+      background: #111;
+      color: #fff;
     }
 
     .live {
       display: flex;
       align-items: center;
       gap: 7px;
-      color: var(--muted-2);
-      font-size: .73rem;
+      color: var(--soft);
+      font-size: .7rem;
       white-space: nowrap;
     }
 
@@ -172,222 +156,236 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 10px rgba(52, 211, 153, .7);
+      background: #55bd7c;
     }
 
     .status {
-      min-height: 22px;
-      margin: 0 0 18px;
-      color: var(--muted-2);
-      font-size: .76rem;
+      min-height: 20px;
+      margin: 10px 0 22px;
+      color: var(--soft);
+      font-size: .72rem;
     }
 
-    /* ---------- DAY GRID ---------- */
+    /* --------------------------------------------------
+       MAIN CARD
+    -------------------------------------------------- */
 
     .grid {
       display: grid;
-      gap: 14px;
-      padding-bottom: 20px;
+      gap: 16px;
+      padding-bottom: 25px;
     }
 
     .day {
       position: relative;
       overflow: hidden;
-      padding: 19px;
       border: 1px solid var(--line);
-      border-radius: 22px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(17, 36, 59, .88),
-          rgba(8, 20, 34, .92)
-        );
-      box-shadow: var(--shadow);
-      isolation: isolate;
+      border-radius: 17px;
+      background: var(--card);
     }
+
+    /*
+      Thin gradient line at the top of every card.
+    */
 
     .day::before {
       content: "";
-      position: absolute;
-      z-index: -1;
-      top: -100px;
-      right: -100px;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      background: var(--status-color, rgba(52, 211, 153, .08));
-      opacity: .07;
-      filter: blur(15px);
+      display: block;
+      height: 4px;
+      background: var(--gradient);
     }
 
-    .day.good {
-      --status-color: var(--green);
+    .day-content {
+      padding: 22px;
     }
 
-    .day.acceptable {
-      --status-color: var(--lime);
-    }
-
-    .day.moderate {
-      --status-color: var(--yellow);
-    }
-
-    .day.polluted {
-      --status-color: var(--orange);
-    }
-
-    .day.very-polluted {
-      --status-color: var(--red);
-    }
-
-    .day.extreme {
-      --status-color: var(--purple);
-    }
-
-    .day:first-child {
-      border-color: rgba(255, 255, 255, .17);
-    }
+    /* --------------------------------------------------
+       DAY HEADER
+    -------------------------------------------------- */
 
     .day-head {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 12px;
+      gap: 15px;
     }
 
     .date {
-      color: var(--text);
-      font-size: 1rem;
-      font-weight: 850;
+      font-size: .95rem;
+      font-weight: 800;
       letter-spacing: -.01em;
       text-transform: capitalize;
     }
 
-    .today-label {
-      display: block;
+    .today {
       margin-top: 3px;
-      color: var(--muted-2);
-      font-size: .68rem;
+      color: var(--soft);
+      font-size: .67rem;
       font-weight: 700;
+      letter-spacing: .07em;
       text-transform: uppercase;
-      letter-spacing: .08em;
     }
 
     .badge {
-      flex-shrink: 0;
-      padding: 6px 10px;
-      border: 1px solid rgba(255,255,255,.09);
+      padding: 5px 9px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(255,255,255,.055);
-      color: var(--text);
-      font-size: .7rem;
-      font-weight: 850;
+      background: #fafafa;
+      color: #333;
+      font-size: .67rem;
+      font-weight: 750;
       white-space: nowrap;
     }
 
-    /* ---------- INDICATOR ---------- */
+    /* --------------------------------------------------
+       INDICATOR
+    -------------------------------------------------- */
 
-    .indicator {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 15px;
-      margin: 17px 0 19px;
+    .indicator-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 1.2fr);
+      align-items: end;
+      gap: 35px;
+      margin-top: 25px;
     }
 
-    .indicator-label {
-      color: var(--muted-2);
-      font-size: .7rem;
+    .indicator-title {
+      color: var(--soft);
+      font-size: .66rem;
       font-weight: 750;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      letter-spacing: .09em;
     }
 
-    .indicator strong {
-      display: block;
-      margin-top: 3px;
-      font-size: 1.55rem;
-      letter-spacing: -.035em;
+    .indicator-value {
+      margin-top: 5px;
+      font-size: 1.65rem;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -.04em;
     }
 
     .change {
-      text-align: right;
+      margin-top: 9px;
       color: var(--muted);
-      font-size: .73rem;
-      line-height: 1.45;
+      font-size: .72rem;
     }
 
-    .change.good-change {
-      color: var(--green);
+    .change.improved {
+      color: #29985b;
     }
 
-    .change.bad-change {
-      color: var(--orange);
+    .change.worse {
+      color: #d66b25;
     }
 
-    /* ---------- POLLUTANTS ---------- */
+    /* --------------------------------------------------
+       GRADIENT SCALE
+    -------------------------------------------------- */
+
+    .scale {
+      position: relative;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--gradient);
+    }
+
+    .scale-marker {
+      position: absolute;
+      top: 50%;
+      width: 3px;
+      height: 17px;
+      border-radius: 2px;
+      background: #111;
+      transform: translate(-50%, -50%);
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,.9);
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 7px;
+      color: var(--soft);
+      font-size: .58rem;
+    }
+
+    /* --------------------------------------------------
+       POLLUTANTS
+    -------------------------------------------------- */
+
+    .pollutants-title {
+      margin-top: 26px;
+      margin-bottom: 10px;
+      color: var(--soft);
+      font-size: .66rem;
+      font-weight: 750;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
 
     .pollutants {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(130px, 1fr)
+      );
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
     }
 
     .pollutant {
       min-width: 0;
-      padding: 11px;
-      border: 1px solid rgba(255,255,255,.065);
-      border-radius: 14px;
-      background: rgba(255,255,255,.035);
+      padding: 13px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
-    .pollutant .name {
+    .pollutant-name {
       color: var(--muted);
-      font-size: .72rem;
+      font-size: .68rem;
       font-weight: 700;
     }
 
-    .pollutant .value {
+    .pollutant-value {
       margin-top: 3px;
-      color: var(--text);
       font-size: 1rem;
-      font-weight: 850;
+      font-weight: 800;
       letter-spacing: -.015em;
     }
 
-    .pollutant .meta {
+    .pollutant-unit {
+      margin-left: 2px;
+      color: var(--muted);
+      font-size: .65rem;
+      font-weight: 500;
+    }
+
+    .pollutant-meta {
       overflow: hidden;
       margin-top: 4px;
-      color: var(--muted-2);
-      font-size: .62rem;
-      line-height: 1.4;
+      color: var(--soft);
+      font-size: .58rem;
+      line-height: 1.35;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
-    .empty {
-      padding: 24px;
-      border: 1px dashed var(--line);
-      border-radius: 16px;
-      color: var(--muted);
-      font-size: .85rem;
-    }
+    /* --------------------------------------------------
+       FOOTER
+    -------------------------------------------------- */
 
     .day-footer {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255,255,255,.055);
-      color: var(--muted-2);
-      font-size: .66rem;
+      gap: 12px;
+      margin-top: 15px;
+      color: var(--soft);
+      font-size: .62rem;
     }
 
     .preliminary {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 5px;
     }
@@ -400,91 +398,132 @@
       background: var(--yellow);
     }
 
-    /* ---------- ERROR ---------- */
+    /* --------------------------------------------------
+       EMPTY / ERROR
+    -------------------------------------------------- */
+
+    .empty {
+      padding: 30px;
+      border: 1px dashed var(--line-dark);
+      border-radius: 15px;
+      background: #fff;
+      color: var(--muted);
+      font-size: .85rem;
+    }
 
     .error {
       padding: 18px;
-      border: 1px solid rgba(251,113,133,.25);
-      border-left: 4px solid var(--red);
-      border-radius: 16px;
-      background: rgba(127,29,29,.18);
-      color: #fecdd3;
+      border: 1px solid #f0c9cf;
+      border-radius: 15px;
+      background: #fff;
+      color: #a33b48;
+      font-size: .82rem;
     }
 
-    /* ---------- FOOTER ---------- */
+    /* --------------------------------------------------
+       FOOTER
+    -------------------------------------------------- */
 
     footer {
-      padding: 20px 0 42px;
-      color: var(--muted-2);
-      font-size: .72rem;
+      padding: 25px 0 45px;
+      color: var(--soft);
+      font-size: .68rem;
       line-height: 1.7;
     }
 
+    footer p {
+      margin: 5px 0;
+    }
+
     footer strong {
-      color: var(--muted);
+      color: #666;
     }
 
     footer a {
-      color: var(--muted);
+      color: #555;
     }
 
-    footer code {
-      color: var(--muted);
-    }
+    /* --------------------------------------------------
+       DESKTOP
+    -------------------------------------------------- */
 
-    .footer-line + .footer-line {
-      margin-top: 7px;
-    }
-
-    /* ---------- DESKTOP ---------- */
-
-    @media (min-width: 700px) {
-      .hero {
-        padding-top: 52px;
-      }
-
-      .toolbar-row {
-        margin-top: 32px;
-      }
+    @media (min-width: 720px) {
 
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      /*
+        Today's card spans the complete width.
+      */
+
       .day:first-child {
         grid-column: 1 / -1;
       }
 
-      .day:first-child .pollutants {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+      .day:first-child .day-content {
+        padding: 25px;
       }
 
-      .day:first-child .indicator strong {
-        font-size: 1.8rem;
+      .day:first-child .indicator-value {
+        font-size: 2rem;
+      }
+
+      .day:first-child .pollutants {
+        grid-template-columns:
+          repeat(5, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 460px) {
-      .toolbar-row {
+    /* --------------------------------------------------
+       MOBILE
+    -------------------------------------------------- */
+
+    @media (max-width: 600px) {
+
+      .wrap {
+        width: min(100% - 22px, 1080px);
+      }
+
+      header {
+        padding-top: 30px;
+      }
+
+      .controls {
         align-items: flex-end;
       }
 
       .live {
-        font-size: .65rem;
+        font-size: .62rem;
       }
 
-      .day {
-        padding: 16px;
-        border-radius: 19px;
+      .indicator-row {
+        grid-template-columns: 1fr;
+        gap: 18px;
       }
 
-      .indicator {
-        align-items: flex-start;
+      .day-content {
+        padding: 18px;
+      }
+
+      .pollutants {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 380px) {
+
+      .controls {
         flex-direction: column;
+        align-items: flex-start;
       }
 
-      .change {
-        text-align: left;
+      .live {
+        align-self: flex-end;
+      }
+
+      .pollutants {
+        grid-template-columns: 1fr 1fr;
       }
     }
   </style>
@@ -494,46 +533,77 @@
 
 <main class="wrap">
 
-  <header class="hero">
-    <div class="eyebrow">SEPA / Kosava Open Data</div>
+  <header>
 
-    <h1>Niš — Kvalitet vazduha</h1>
+    <div class="eyebrow">
+      SEPA / Kosava Open Data
+    </div>
+
+    <h1>
+      Niš — Kvalitet vazduha
+    </h1>
 
     <p class="intro">
       Satna merenja sa aktivnih SEPA stanica u Nišu,
       grupisana po lokalnim danima.
     </p>
 
-    <div class="toolbar-row">
+    <div class="controls">
+
       <div class="period" aria-label="Period">
-        <button class="btn active" data-days="7">7 dana</button>
-        <button class="btn" data-days="30">30 dana</button>
+
+        <button
+          class="btn active"
+          data-days="7"
+        >
+          7 dana
+        </button>
+
+        <button
+          class="btn"
+          data-days="30"
+        >
+          30 dana
+        </button>
+
       </div>
 
       <div class="live">
         <span class="live-dot"></span>
         Automatsko osvežavanje
       </div>
+
     </div>
 
-    <div id="status" class="status">Učitavanje…</div>
+    <div
+      id="status"
+      class="status"
+    >
+      Učitavanje…
+    </div>
+
   </header>
 
-  <section id="cards" class="grid" aria-live="polite"></section>
+  <section
+    id="cards"
+    class="grid"
+    aria-live="polite"
+  ></section>
 
   <footer>
-    <div class="footer-line">
+
+    <p>
       <strong>Napomena:</strong>
       Podaci su preliminarni kada SEPA označi
       <code>data_status=preliminary</code>.
-    </div>
+    </p>
 
-    <div class="footer-line">
+    <p>
       „Indikator aplikacije“ nije zvanični SEPA indeks
       i ne predstavlja proveru zakonskih graničnih vrednosti.
-    </div>
+    </p>
 
-    <div class="footer-line">
+    <p>
       Izvor:
       <a
         href="https://opendata.kosava.cloud/api/v1/observations"
@@ -543,7 +613,8 @@
         Kosava Open Data API
       </a>
       · metodologija i pragovi dokumentovani u README.
-    </div>
+    </p>
+
   </footer>
 
 </main>
@@ -562,212 +633,405 @@ const labels = {
   O3: 'O₃'
 };
 
-const buttons = [...document.querySelectorAll('.btn')];
-const cards = document.querySelector('#cards');
-const statusEl = document.querySelector('#status');
+const buttons = [
+  ...document.querySelectorAll('.btn')
+];
 
-function esc(s) {
-  return String(s ?? '').replace(
+const cards =
+  document.querySelector('#cards');
+
+const statusEl =
+  document.querySelector('#status');
+
+
+function esc(value) {
+  return String(value ?? '').replace(
     /[&<>"']/g,
-    c => ({
+    character => ({
       '&': '&amp;',
       '<': '&lt;',
       '>': '&gt;',
       '"': '&quot;',
       "'": '&#39;'
-    }[c])
+    }[character])
   );
 }
 
+
+/*
+  Maps the application's indicator rank
+  onto the common visual gradient.
+
+  This is ONLY a visual position.
+  It is not an AQI value.
+*/
+function getScalePosition(indicator) {
+
+  if (!indicator) {
+    return 0;
+  }
+
+  const rank = Number(indicator.rank);
+
+  if (!Number.isFinite(rank)) {
+    return 0;
+  }
+
+  /*
+    Six possible categories:
+    1 = green
+    2 = lime
+    3 = yellow
+    4 = orange
+    5 = red
+    6 = purple
+  */
+
+  return Math.max(
+    0,
+    Math.min(
+      100,
+      ((rank - 1) / 5) * 100
+    )
+  );
+}
+
+
 function changeText(current, previous) {
-  if (!current?.indicator || !previous?.indicator) {
+
+  if (
+    !current?.indicator ||
+    !previous?.indicator
+  ) {
     return {
       text: '',
-      cls: ''
+      className: ''
     };
   }
 
-  const c = current.indicator.rank;
-  const p = previous.indicator.rank;
+  const currentRank =
+    Number(current.indicator.rank);
 
-  if (c === p) {
+  const previousRank =
+    Number(previous.indicator.rank);
+
+  if (
+    !Number.isFinite(currentRank) ||
+    !Number.isFinite(previousRank)
+  ) {
+    return {
+      text: '',
+      className: ''
+    };
+  }
+
+  if (currentRank === previousRank) {
     return {
       text: 'Ista kategorija kao prethodnog dana.',
-      cls: ''
+      className: ''
     };
   }
 
-  if (c < p) {
+  if (currentRank < previousRank) {
     return {
       text: 'Poboljšanje u odnosu na prethodni dan.',
-      cls: 'good-change'
+      className: 'improved'
     };
   }
 
   return {
     text: 'Pogoršanje u odnosu na prethodni dan.',
-    cls: 'bad-change'
+    className: 'worse'
   };
 }
 
+
 function isToday(date) {
+
   const now = new Date();
 
-  const local =
+  const localDate =
     now.getFullYear() +
     '-' +
     String(now.getMonth() + 1).padStart(2, '0') +
     '-' +
     String(now.getDate()).padStart(2, '0');
 
-  return date === local;
+  return date === localDate;
 }
 
+
 function render(feed) {
+
   const days = feed.days
     .slice()
-    .sort((a, b) => b.date.localeCompare(a.date));
+    .sort(
+      (a, b) =>
+        b.date.localeCompare(a.date)
+    );
 
-  const html = days.map((d, i) => {
 
-    const prev = days[i + 1];
-    const ind = d.indicator;
-    const cls = ind?.key || '';
-    const change = changeText(d, prev);
+  const html = days.map((day, index) => {
 
-    const pollutants = Object.entries(d.pollutants || {})
-      .map(([key, p]) => `
-        <div class="pollutant">
-          <div class="name">
-            ${labels[key] || esc(key)}
+    const previous =
+      days[index + 1];
+
+    const indicator =
+      day.indicator;
+
+    const change =
+      changeText(day, previous);
+
+    const position =
+      getScalePosition(indicator);
+
+    const pollutants =
+      Object.entries(
+        day.pollutants || {}
+      )
+      .map(([key, pollutant]) => {
+
+        const value =
+          Number(pollutant.value)
+            .toLocaleString(
+              'sr-RS',
+              {
+                maximumFractionDigits: 2
+              }
+            );
+
+        return `
+          <div class="pollutant">
+
+            <div class="pollutant-name">
+              ${labels[key] || esc(key)}
+            </div>
+
+            <div class="pollutant-value">
+              ${value}
+              <span class="pollutant-unit">
+                ${esc(pollutant.unit || '')}
+              </span>
+            </div>
+
+            <div class="pollutant-meta">
+              maksimalna satna vrednost ·
+              ${esc(pollutant.station_name)} ·
+              ${esc(pollutant.time_local)}
+            </div>
+
           </div>
-
-          <div class="value">
-            ${Number(p.value).toLocaleString('sr-RS', {
-              maximumFractionDigits: 2
-            })}
-            ${esc(p.unit || '')}
-          </div>
-
-          <div class="meta">
-            maks. satna ·
-            ${esc(p.station_name)} ·
-            ${esc(p.time_local)}
-          </div>
-        </div>
-      `)
+        `;
+      })
       .join('');
 
-    const today = isToday(d.date);
+
+    const today =
+      isToday(day.date);
+
 
     return `
-      <article class="day ${esc(cls)}">
+      <article class="day">
 
-        <div class="day-head">
+        <div class="day-content">
 
-          <div>
-            <div class="date">
-              ${esc(d.date_label)}
+          <div class="day-head">
+
+            <div>
+
+              <div class="date">
+                ${esc(day.date_label)}
+              </div>
+
+              ${
+                today
+                  ? '<div class="today">Danas</div>'
+                  : ''
+              }
+
             </div>
 
-            ${today
-              ? '<span class="today-label">Danas</span>'
-              : ''}
-          </div>
-
-          <div class="badge">
-            ${ind
-              ? esc(ind.label)
-              : 'Nema dovoljno podataka'}
-          </div>
-
-        </div>
-
-        <div class="indicator">
-
-          <div>
-            <div class="indicator-label">
-              Indikator aplikacije
+            <div class="badge">
+              ${
+                indicator
+                  ? esc(indicator.label)
+                  : 'Nema dovoljno podataka'
+              }
             </div>
 
-            <strong>
-              ${ind
-                ? esc(ind.label)
-                : 'Nema podataka'}
-            </strong>
           </div>
 
-          <div class="change ${change.cls}">
-            ${esc(change.text)}
+
+          <div class="indicator-row">
+
+            <div>
+
+              <div class="indicator-title">
+                Indikator aplikacije
+              </div>
+
+              <div class="indicator-value">
+                ${
+                  indicator
+                    ? esc(indicator.label)
+                    : 'Nema podataka'
+                }
+              </div>
+
+              ${
+                change.text
+                  ? `
+                    <div class="change ${change.className}">
+                      ${esc(change.text)}
+                    </div>
+                  `
+                  : ''
+              }
+
+            </div>
+
+
+            <div>
+
+              <div class="scale">
+
+                <span
+                  class="scale-marker"
+                  style="left:${position}%"
+                ></span>
+
+              </div>
+
+              <div class="scale-labels">
+                <span>niže</span>
+                <span>više</span>
+              </div>
+
+            </div>
+
           </div>
 
-        </div>
 
-        <div class="pollutants">
-          ${
-            pollutants ||
-            '<div class="empty">Nema podataka za prikaz.</div>'
-          }
-        </div>
+          <div class="pollutants-title">
+            Dostupni polutanti · maksimalne satne vrednosti
+          </div>
 
-        <div class="day-footer">
 
-          <span>
-            ${d.observation_count || 0} satnih zapisa
-          </span>
+          <div class="pollutants">
 
-          ${
-            d.data_status === 'preliminary'
-              ? '<span class="preliminary">Preliminarni podaci</span>'
-              : ''
-          }
+            ${
+              pollutants ||
+              `
+                <div class="empty">
+                  Nema podataka za ovaj dan.
+                </div>
+              `
+            }
+
+          </div>
+
+
+          <div class="day-footer">
+
+            <span>
+              ${day.observation_count || 0}
+              satnih zapisa
+            </span>
+
+            ${
+              day.data_status === 'preliminary'
+                ? `
+                  <span class="preliminary">
+                    Preliminarni podaci
+                  </span>
+                `
+                : ''
+            }
+
+          </div>
 
         </div>
 
       </article>
     `;
+
   }).join('');
+
 
   cards.innerHTML =
     html ||
-    '<div class="empty">Nema dostupnih dana.</div>';
+    `
+      <div class="empty">
+        Nema dostupnih dana.
+      </div>
+    `;
 
-  const generated = new Date(feed.generated_at_utc);
 
-  const stationCount = Array.isArray(feed.stations)
-    ? feed.stations.length
-    : 0;
+  const generated =
+    new Date(feed.generated_at_utc);
+
+
+  const stationCount =
+    Array.isArray(feed.stations)
+      ? feed.stations.length
+      : 0;
+
 
   statusEl.textContent =
-    `Osveženo: ${generated.toLocaleString('sr-RS')} · ` +
-    `${stationCount} Niš stanice` +
-    `${feed.data_status === 'preliminary'
-      ? ' · preliminarni podaci'
-      : ''}`;
+    `Osveženo: ${
+      generated.toLocaleString('sr-RS')
+    } · ${
+      stationCount
+    } Niš stanice` +
+    (
+      feed.data_status === 'preliminary'
+        ? ' · preliminarni podaci'
+        : ''
+    );
 }
 
+
 async function load(days) {
-  statusEl.textContent = 'Učitavanje…';
+
+  statusEl.textContent =
+    'Učitavanje…';
+
   cards.innerHTML = '';
 
+
   try {
+
+    /*
+      30 dana se učitava tek kada korisnik
+      klikne na "30 dana".
+    */
+
     if (!state.cache[days]) {
 
-      const response = await fetch(
-        `data/nis-${days}d.json?${Date.now()}`,
-        {
-          cache: 'no-store'
-        }
-      );
+      const response =
+        await fetch(
+          `data/nis-${days}d.json?${Date.now()}`,
+          {
+            cache: 'no-store'
+          }
+        );
+
 
       if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+        throw new Error(
+          `HTTP ${response.status}`
+        );
       }
 
-      state.cache[days] = await response.json();
+
+      state.cache[days] =
+        await response.json();
     }
 
-    render(state.cache[days]);
+
+    render(
+      state.cache[days]
+    );
 
   } catch (error) {
 
@@ -783,22 +1047,33 @@ async function load(days) {
   }
 }
 
+
 buttons.forEach(button => {
 
-  button.addEventListener('click', () => {
+  button.addEventListener(
+    'click',
+    () => {
 
-    buttons.forEach(x =>
-      x.classList.remove('active')
-    );
+      buttons.forEach(item =>
+        item.classList.remove('active')
+      );
 
-    button.classList.add('active');
+      button.classList.add('active');
 
-    state.days = Number(button.dataset.days);
+      state.days =
+        Number(button.dataset.days);
 
-    load(state.days);
-  });
+      load(state.days);
+    }
+  );
 
 });
+
+
+/*
+  Initial load:
+  only 7-day data is requested.
+*/
 
 load(7);
 </script>
