@@ -59,69 +59,6 @@ Ovo je namerno označeno kao **Indikator aplikacije**, a ne kao zvanični „SEP
 
 Vrednost polutanta na kartici je označena kao **maks. satna**, a uz nju se navode stanica i lokalno vreme merenja.
 
-## Lokalno pokretanje
-
-Potrebna je moderna verzija Node.js-a (workflow koristi Node 22).
-
-U PowerShell/CMD-u:
-
-```powershell
-cd nis-air
-node scripts/update-data.js
-```
-
-Skripta će napraviti/obnoviti:
-
-```text
-data/nis-7d.json
-data/nis-30d.json
-```
-
-Za lokalni frontend nemoj otvarati `index.html` preko `file://`, već pokreni jednostavan statički server. Na primer, ako imaš Python:
-
-```powershell
-python -m http.server 8000
-```
-
-zatim otvori `http://localhost:8000`.
-
-Ako koristiš VS Code/Visual Studio lokalni server, dovoljno je da služi root folder projekta.
-
-## Postavljanje na GitHub
-
-1. Napravi novi GitHub repository, npr. `nis-air`.
-2. Kopiraj sve fajlove ovog projekta u repository.
-3. Commit + push na podrazumevanu granu, npr. `main`.
-4. Proveri da su `.github/workflows/update-data.yml` i `scripts/update-data.js` u repozitorijumu.
-
-Primer:
-
-```powershell
-git init
-git add .
-git commit -m "Initial Niš air quality app"
-git branch -M main
-git remote add origin https://github.com/USERNAME/nis-air.git
-git push -u origin main
-```
-
-Zameni `USERNAME` svojim GitHub korisničkim imenom.
-
-## GitHub Pages
-
-U repository-u otvori:
-
-`Settings → Pages`
-
-U delu **Build and deployment** izaberi:
-
-- Source: **Deploy from a branch**
-- Branch: `main`
-- Folder: `/ (root)`
-
-Sačuvaj. GitHub će zatim objaviti `index.html` kao GitHub Pages sajt.
-
-## GitHub Action
 
 Workflow se pokreće:
 
