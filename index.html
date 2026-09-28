@@ -1,63 +1,797 @@
+
 <!doctype html>
 <html lang="sr">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1220">
+  <meta name="theme-color" content="#08111f">
   <meta name="description" content="SEPA/Kosava podaci o kvalitetu vazduha u Nišu.">
   <title>Niš — Kvalitet vazduha</title>
+
   <style>
-    :root{--bg:#07111f;--panel:#0d1a2b;--panel2:#11233a;--text:#eef5ff;--muted:#9fb0c7;--line:#20334c;--accent:#6ee7b7;--shadow:0 18px 50px rgba(0,0,0,.22)}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#12263f 0,#07111f 48%,#050b14 100%);color:var(--text);font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    .wrap{width:min(980px,calc(100% - 28px));margin:auto}.hero{padding:42px 0 22px}.eyebrow{text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-size:.75rem;font-weight:800}.hero h1{font-size:clamp(2rem,7vw,4rem);line-height:1;margin:.35rem 0 .75rem}.hero p{margin:0;color:var(--muted);max-width:720px}.toolbar{display:flex;gap:8px;margin:22px 0 10px}.btn{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 15px;border-radius:12px;font-weight:750;cursor:pointer}.btn.active{background:var(--text);color:#08111e}.status{color:var(--muted);font-size:.85rem;margin:8px 0 18px}.grid{display:grid;gap:14px}.day{background:linear-gradient(145deg,rgba(17,35,58,.96),rgba(9,22,37,.96));border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:18px;padding:18px;box-shadow:var(--shadow)}.day.good{border-left-color:#22c55e}.day.acceptable{border-left-color:#84cc16}.day.moderate{border-left-color:#facc15}.day.polluted{border-left-color:#fb923c}.day.very-polluted{border-left-color:#f43f5e}.day.extreme{border-left-color:#c084fc}.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.date{font-weight:800;font-size:1.05rem;text-transform:capitalize}.badge{font-size:.76rem;font-weight:800;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.08);white-space:nowrap}.indicator{margin:10px 0 16px}.indicator strong{font-size:1.55rem}.change{font-size:.85rem;color:var(--muted);margin-top:3px}.pollutants{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:9px}.pollutant{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.06);border-radius:13px;padding:11px}.pollutant .name{color:var(--muted);font-size:.78rem}.pollutant .value{font-size:1.05rem;font-weight:800;margin-top:2px}.pollutant .meta{color:#8294aa;font-size:.72rem;margin-top:3px}.empty{padding:28px;border:1px dashed var(--line);border-radius:16px;color:var(--muted)}footer{padding:28px 0 44px;color:var(--muted);font-size:.8rem}footer a{color:inherit}.error{border-left:4px solid #fb7185;padding:14px;background:#28121b;border-radius:12px}
-    @media(min-width:700px){.hero{padding-top:60px}.grid{grid-template-columns:1fr 1fr}.day:first-child{grid-column:1/-1}}
+    :root {
+      --bg: #06101d;
+      --bg-soft: #0a1727;
+      --card: rgba(14, 29, 48, .78);
+      --card-solid: #0e1d30;
+      --line: rgba(148, 163, 184, .14);
+      --text: #f4f8ff;
+      --muted: #91a3b9;
+      --muted-2: #63758b;
+      --green: #34d399;
+      --lime: #a3e635;
+      --yellow: #facc15;
+      --orange: #fb923c;
+      --red: #fb7185;
+      --purple: #c084fc;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(circle at 15% -10%,
+          rgba(52, 211, 153, .12),
+          transparent 34%),
+        radial-gradient(circle at 100% 0%,
+          rgba(96, 165, 250, .11),
+          transparent 30%),
+        linear-gradient(180deg, #081321 0%, #06101d 55%, #040b14 100%);
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .wrap {
+      width: min(1080px, calc(100% - 28px));
+      margin: auto;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      padding: 28px 0 20px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--green);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 14px rgba(52, 211, 153, .8);
+    }
+
+    h1 {
+      margin: 12px 0 10px;
+      max-width: 780px;
+      font-size: clamp(2.35rem, 9vw, 5rem);
+      line-height: .95;
+      letter-spacing: -.055em;
+    }
+
+    .intro {
+      max-width: 650px;
+      margin: 0;
+      color: var(--muted);
+      font-size: .98rem;
+      line-height: 1.65;
+    }
+
+    /* ---------- TOOLBAR ---------- */
+
+    .toolbar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 25px 0 12px;
+    }
+
+    .period {
+      display: inline-flex;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(8, 19, 33, .72);
+      backdrop-filter: blur(16px);
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 11px;
+      padding: 9px 15px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      font-size: .84rem;
+      font-weight: 800;
+      transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+    }
+
+    .btn:hover {
+      color: var(--text);
+    }
+
+    .btn:active {
+      transform: scale(.97);
+    }
+
+    .btn.active {
+      color: #06101d;
+      background: var(--text);
+    }
+
+    .live {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted-2);
+      font-size: .73rem;
+      white-space: nowrap;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px rgba(52, 211, 153, .7);
+    }
+
+    .status {
+      min-height: 22px;
+      margin: 0 0 18px;
+      color: var(--muted-2);
+      font-size: .76rem;
+    }
+
+    /* ---------- DAY GRID ---------- */
+
+    .grid {
+      display: grid;
+      gap: 14px;
+      padding-bottom: 20px;
+    }
+
+    .day {
+      position: relative;
+      overflow: hidden;
+      padding: 19px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background:
+        linear-gradient(145deg,
+          rgba(17, 36, 59, .88),
+          rgba(8, 20, 34, .92));
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .day::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -100px;
+      right: -100px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: var(--status-color, rgba(52, 211, 153, .08));
+      opacity: .07;
+      filter: blur(15px);
+    }
+
+    .day.good {
+      --status-color: var(--green);
+    }
+
+    .day.acceptable {
+      --status-color: var(--lime);
+    }
+
+    .day.moderate {
+      --status-color: var(--yellow);
+    }
+
+    .day.polluted {
+      --status-color: var(--orange);
+    }
+
+    .day.very-polluted {
+      --status-color: var(--red);
+    }
+
+    .day.extreme {
+      --status-color: var(--purple);
+    }
+
+    .day:first-child {
+      border-color: rgba(255, 255, 255, .17);
+    }
+
+    .day-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .date {
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 850;
+      letter-spacing: -.01em;
+      text-transform: capitalize;
+    }
+
+    .today-label {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted-2);
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .badge {
+      flex-shrink: 0;
+      padding: 6px 10px;
+      border: 1px solid rgba(255, 255, 255, .09);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .055);
+      color: var(--text);
+      font-size: .7rem;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    /* ---------- INDICATOR ---------- */
+
+    .indicator {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 15px;
+      margin: 17px 0 19px;
+    }
+
+    .indicator-label {
+      color: var(--muted-2);
+      font-size: .7rem;
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+    }
+
+    .indicator strong {
+      display: block;
+      margin-top: 3px;
+      font-size: 1.55rem;
+      letter-spacing: -.035em;
+    }
+
+    .change {
+      text-align: right;
+      color: var(--muted);
+      font-size: .73rem;
+      line-height: 1.45;
+    }
+
+    .change.good-change {
+      color: var(--green);
+    }
+
+    .change.bad-change {
+      color: var(--orange);
+    }
+
+    /* ---------- POLLUTANTS ---------- */
+
+    .pollutants {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .pollutant {
+      min-width: 0;
+      padding: 11px;
+      border: 1px solid rgba(255, 255, 255, .065);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .035);
+    }
+
+    .pollutant .name {
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 700;
+    }
+
+    .pollutant .value {
+      margin-top: 3px;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 850;
+      letter-spacing: -.015em;
+    }
+
+    .pollutant .meta {
+      overflow: hidden;
+      margin-top: 4px;
+      color: var(--muted-2);
+      font-size: .62rem;
+      line-height: 1.4;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .empty {
+      padding: 24px;
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .day-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, .055);
+      color: var(--muted-2);
+      font-size: .66rem;
+    }
+
+    .preliminary {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .preliminary::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--yellow);
+    }
+
+    /* ---------- ERROR ---------- */
+
+    .error {
+      padding: 18px;
+      border: 1px solid rgba(251, 113, 133, .25);
+      border-left: 4px solid var(--red);
+      border-radius: 16px;
+      background: rgba(127, 29, 29, .18);
+      color: #fecdd3;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      padding: 20px 0 42px;
+      color: var(--muted-2);
+      font-size: .72rem;
+      line-height: 1.7;
+    }
+
+    footer strong {
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--muted);
+    }
+
+    footer code {
+      color: var(--muted);
+    }
+
+    .footer-line+.footer-line {
+      margin-top: 7px;
+    }
+
+    /* ---------- DESKTOP ---------- */
+
+    @media (min-width: 700px) {
+      .hero {
+        padding-top: 52px;
+      }
+
+      .toolbar-row {
+        margin-top: 32px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .day:first-child {
+        grid-column: 1 / -1;
+      }
+
+      .day:first-child .pollutants {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .day:first-child .indicator strong {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .toolbar-row {
+        align-items: flex-end;
+      }
+
+      .live {
+        font-size: .65rem;
+      }
+
+      .day {
+        padding: 16px;
+        border-radius: 19px;
+      }
+
+      .indicator {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .change {
+        text-align: left;
+      }
+    }
   </style>
 </head>
+
 <body>
+
   <main class="wrap">
+
     <header class="hero">
       <div class="eyebrow">SEPA / Kosava Open Data</div>
+
       <h1>Niš — Kvalitet vazduha</h1>
-      <p>Pregled poslednjih satnih merenja grupisanih po lokalnim danima. Bez direktnog poziva API-ju iz browsera.</p>
-      <nav class="toolbar" aria-label="Period"><button class="btn active" data-days="7">7 dana</button><button class="btn" data-days="30">30 dana</button></nav>
+
+      <p class="intro">
+        Satna merenja sa aktivnih SEPA stanica u Nišu,
+        grupisana po lokalnim danima.
+      </p>
+
+      <div class="toolbar-row">
+        <div class="period" aria-label="Period">
+          <button class="btn active" data-days="7">7 dana</button>
+          <button class="btn" data-days="30">30 dana</button>
+        </div>
+
+        <div class="live">
+          <span class="live-dot"></span>
+          Automatsko osvežavanje
+        </div>
+      </div>
+
       <div id="status" class="status">Učitavanje…</div>
     </header>
+
     <section id="cards" class="grid" aria-live="polite"></section>
+
     <footer>
-      <div>Podaci su preliminarni kada SEPA označi <code>data_status=preliminary</code>. Aplikacioni indikator nije zvanični SEPA indeks i ne predstavlja proveru zakonskih graničnih vrednosti.</div>
-      <div style="margin-top:8px">Izvor: <a href="https://opendata.kosava.cloud/api/v1/observations" target="_blank" rel="noreferrer">Kosava Open Data API</a> · metodologija i pragovi dokumentovani u README.</div>
+      <div class="footer-line">
+        <strong>Napomena:</strong>
+        Podaci su preliminarni kada SEPA označi
+        <code>data_status=preliminary</code>.
+      </div>
+
+      <div class="footer-line">
+        „Indikator aplikacije“ nije zvanični SEPA indeks
+        i ne predstavlja proveru zakonskih graničnih vrednosti.
+      </div>
+
+      <div class="footer-line">
+        Izvor:
+        <a href="https://opendata.kosava.cloud/api/v1/observations" target="_blank" rel="noreferrer">
+          Kosava Open Data API
+        </a>
+        · metodologija i pragovi dokumentovani u README.
+      </div>
     </footer>
+
   </main>
-<script>
-const state={days:7, cache:{}};
-const labels={PM10:'PM10', 'PM2.5':'PM2.5', NO2:'NO₂', SO2:'SO₂', O3:'O₃'};
-const buttons=[...document.querySelectorAll('.btn')];
-const cards=document.querySelector('#cards'), statusEl=document.querySelector('#status');
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function pct(a,b){if(a==null||b==null||a===0)return null;return ((b-a)/a)*100}
-function changeText(current,previous){
-  if(!current?.indicator||!previous?.indicator)return '';
-  const c=current.indicator.rank,p=previous.indicator.rank;
-  if(c===p)return 'Promena: ista kategorija kao prethodnog dana.';
-  return c<p?'Poboljšanje u odnosu na prethodni dan.':'Pogoršanje u odnosu na prethodni dan.';
-}
-function render(feed){
-  const days=feed.days.slice().sort((a,b)=>b.date.localeCompare(a.date));
-  const html=days.map((d,i)=>{
-    const prev=days[i+1]; const ind=d.indicator; const cls=ind?.key||'';
-    const pollutants=Object.entries(d.pollutants||{}).map(([key,p])=>`<div class="pollutant"><div class="name">${labels[key]||esc(key)}</div><div class="value">${Number(p.value).toLocaleString('sr-RS',{maximumFractionDigits:2})} ${esc(p.unit||'')}</div><div class="meta">maks. satna · ${esc(p.station_name)} · ${esc(p.time_local)}</div></div>`).join('');
-    return `<article class="day ${cls}"><div class="top"><div class="date">${esc(d.date_label)}</div><div class="badge">${ind?esc(ind.label):'Nema dovoljno podataka'}</div></div><div class="indicator">${ind?`<strong>${esc(ind.label)}</strong><div class="change">${esc(changeText(d,prev))}</div>`:'<strong>Nema podataka</strong>'}</div><div class="pollutants">${pollutants||'<div class="empty">Nema podataka za prikaz.</div>'}</div><div class="status">${d.data_status==='preliminary'?'Preliminarni podaci · ':''}${d.observation_count} satnih zapisa</div></article>`;
-  }).join('');
-  cards.innerHTML=html||'<div class="empty">Nema dostupnih dana.</div>';
-  const generated=new Date(feed.generated_at_utc); statusEl.textContent=`Osveženo: ${generated.toLocaleString('sr-RS')} · ${feed.stations.length} Niš stanice · ${feed.data_status==='preliminary'?'preliminarni podaci':''}`;
-}
-async function load(days){
-  statusEl.textContent='Učitavanje…'; cards.innerHTML='';
-  try{ if(!state.cache[days]){const r=await fetch(`data/nis-${days}d.json?${Date.now()}`,{cache:'no-store'});if(!r.ok)throw new Error(`HTTP ${r.status}`);state.cache[days]=await r.json()} render(state.cache[days]); }
-  catch(e){cards.innerHTML=`<div class="error">Podaci trenutno nisu dostupni. ${esc(e.message)}</div>`;statusEl.textContent='Greška pri učitavanju podataka.'}
-}
-buttons.forEach(b=>b.addEventListener('click',()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');state.days=Number(b.dataset.days);load(state.days)}));
-load(7);
-</script>
+
+  <script>
+    const state = {
+      days: 7,
+      cache: {}
+    };
+
+    const labels = {
+      PM10: 'PM10',
+      'PM2.5': 'PM2.5',
+      NO2: 'NO₂',
+      SO2: 'SO₂',
+      O3: 'O₃'
+    };
+
+    const buttons = [...document.querySelectorAll('.btn')];
+    const cards = document.querySelector('#cards');
+    const statusEl = document.querySelector('#status');
+
+    function esc(s) {
+      return String(s ?? '').replace(
+        /[&<>"']/g,
+        c => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[c])
+      );
+    }
+
+    function changeText(current, previous) {
+      if (!current?.indicator || !previous?.indicator) {
+        return {
+          text: '',
+          cls: ''
+        };
+      }
+
+      const c = current.indicator.rank;
+      const p = previous.indicator.rank;
+
+      if (c === p) {
+        return {
+          text: 'Ista kategorija kao prethodnog dana.',
+          cls: ''
+        };
+      }
+
+      if (c < p) {
+        return {
+          text: 'Poboljšanje u odnosu na prethodni dan.',
+          cls: 'good-change'
+        };
+      }
+
+      return {
+        text: 'Pogoršanje u odnosu na prethodni dan.',
+        cls: 'bad-change'
+      };
+    }
+
+    function isToday(date) {
+      const now = new Date();
+
+      const local =
+        now.getFullYear() +
+        '-' +
+        String(now.getMonth() + 1).padStart(2, '0') +
+        '-' +
+        String(now.getDate()).padStart(2, '0');
+
+      return date === local;
+    }
+
+    function render(feed) {
+      const days = feed.days
+        .slice()
+        .sort((a, b) => b.date.localeCompare(a.date));
+
+      const html = days.map((d, i) => {
+
+        const prev = days[i + 1];
+        const ind = d.indicator;
+        const cls = ind?.key || '';
+        const change = changeText(d, prev);
+
+        const pollutants = Object.entries(d.pollutants || {})
+          .map(([key, p]) => `
+        <div class="pollutant">
+          <div class="name">
+            ${labels[key] || esc(key)}
+          </div>
+
+          <div class="value">
+            ${Number(p.value).toLocaleString('sr-RS', {
+            maximumFractionDigits: 2
+          })}
+            ${esc(p.unit || '')}
+          </div>
+
+          <div class="meta">
+            maks. satna ·
+            ${esc(p.station_name)} ·
+            ${esc(p.time_local)}
+          </div>
+        </div>
+      `)
+          .join('');
+
+        const today = isToday(d.date);
+
+        return `
+      <article class="day ${esc(cls)}">
+
+        <div class="day-head">
+
+          <div>
+            <div class="date">
+              ${esc(d.date_label)}
+            </div>
+
+            ${today
+            ? '<span class="today-label">Danas</span>'
+            : ''}
+          </div>
+
+          <div class="badge">
+            ${ind
+            ? esc(ind.label)
+            : 'Nema dovoljno podataka'}
+          </div>
+
+        </div>
+
+        <div class="indicator">
+
+          <div>
+            <div class="indicator-label">
+              Indikator aplikacije
+            </div>
+
+            <strong>
+              ${ind
+            ? esc(ind.label)
+            : 'Nema podataka'}
+            </strong>
+          </div>
+
+          <div class="change ${change.cls}">
+            ${esc(change.text)}
+          </div>
+
+        </div>
+
+        <div class="pollutants">
+          ${pollutants ||
+          '<div class="empty">Nema podataka za prikaz.</div>'
+          }
+        </div>
+
+        <div class="day-footer">
+
+          <span>
+            ${d.observation_count || 0} satnih zapisa
+          </span>
+
+          ${d.data_status === 'preliminary'
+            ? '<span class="preliminary">Preliminarni podaci</span>'
+            : ''
+          }
+
+        </div>
+
+      </article>
+    `;
+      }).join('');
+
+      cards.innerHTML =
+        html ||
+        '<div class="empty">Nema dostupnih dana.</div>';
+
+      const generated = new Date(feed.generated_at_utc);
+
+      const stationCount = Array.isArray(feed.stations)
+        ? feed.stations.length
+        : 0;
+
+      statusEl.textContent =
+        `Osveženo: ${generated.toLocaleString('sr-RS')} · ` +
+        `${stationCount} Niš stanice` +
+        `${feed.data_status === 'preliminary'
+          ? ' · preliminarni podaci'
+          : ''}`;
+    }
+
+    async function load(days) {
+      statusEl.textContent = 'Učitavanje…';
+      cards.innerHTML = '';
+
+      try {
+        if (!state.cache[days]) {
+
+          const response = await fetch(
+            `data/nis-${days}d.json?${Date.now()}`,
+            {
+              cache: 'no-store'
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+
+          state.cache[days] = await response.json();
+        }
+
+        render(state.cache[days]);
+
+      } catch (error) {
+
+        cards.innerHTML = `
+      <div class="error">
+        Podaci trenutno nisu dostupni.
+        ${esc(error.message)}
+      </div>
+    `;
+
+        statusEl.textContent =
+          'Greška pri učitavanju podataka.';
+      }
+    }
+
+    buttons.forEach(button => {
+
+      button.addEventListener('click', () => {
+
+        buttons.forEach(x =>
+          x.classList.remove('active')
+        );
+
+        button.classList.add('active');
+
+        state.days = Number(button.dataset.days);
+
+        load(state.days);
+      });
+
+    });
+
+    load(7);
+  </script>
+
 </body>
+
 </html>
