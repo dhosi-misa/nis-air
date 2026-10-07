@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-07T01:31:24.315Z",
+  "generated_at_utc": "2026-10-07T08:37:39.412Z",
   "timezone": "Europe/Belgrade",
   "period_days": 30,
   "source": "SEPA / Kosava Open Data API",
@@ -2872,11 +2872,11 @@
       },
       "pollutants": {
         "PM10": {
-          "value": 69.858666666667,
+          "value": 91.7975,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 12,
-          "time_local": "00:00",
+          "samples": 33,
+          "time_local": "10:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
@@ -2890,7 +2890,7 @@
           "value": 44.7765,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 12,
+          "samples": 33,
           "time_local": "00:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
@@ -2905,7 +2905,7 @@
           "value": 72.7762805,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 16,
+          "samples": 44,
           "time_local": "00:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
@@ -2917,13 +2917,13 @@
           }
         },
         "SO2": {
-          "value": 7.8970879938602,
+          "value": 10.136887033333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 16,
-          "time_local": "03:00",
-          "station_id": "106",
-          "station_name": "Niš Dimitrija Leka",
+          "samples": 44,
+          "time_local": "10:00",
+          "station_id": "36",
+          "station_name": "Kamenički Vis EMEP",
           "data_status": "preliminary",
           "category": {
             "key": "good",
@@ -2935,7 +2935,7 @@
           "value": 121.571975,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 12,
+          "samples": 33,
           "time_local": "00:00",
           "station_id": "36",
           "station_name": "Kamenički Vis EMEP",
@@ -2953,7 +2953,7 @@
         "38",
         "106"
       ],
-      "observation_count": 68,
+      "observation_count": 187,
       "data_status": "preliminary"
     }
   ]
