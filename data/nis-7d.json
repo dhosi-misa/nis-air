@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-08T22:04:14.702Z",
+  "generated_at_utc": "2026-10-09T02:08:06.820Z",
   "timezone": "Europe/Belgrade",
   "period_days": 7,
   "source": "SEPA / Kosava Open Data API",
@@ -635,17 +635,17 @@
         "key": "polluted",
         "label": "Zagađen",
         "rank": 3,
-        "pollutant": "NO2",
-        "value": 73.3118925,
-        "station_id": "37"
+        "pollutant": "PM2.5",
+        "value": 50.269333333333,
+        "station_id": "38"
       },
       "pollutants": {
         "PM10": {
-          "value": 73.383166666667,
+          "value": 88.872166666667,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 3,
-          "time_local": "00:00",
+          "samples": 15,
+          "time_local": "01:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
@@ -656,28 +656,28 @@
           }
         },
         "PM2.5": {
-          "value": 39.352,
+          "value": 50.269333333333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 3,
-          "time_local": "00:00",
+          "samples": 15,
+          "time_local": "01:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
           "category": {
-            "key": "moderate",
-            "label": "Umeren",
-            "rank": 2
+            "key": "polluted",
+            "label": "Zagađen",
+            "rank": 3
           }
         },
         "NO2": {
-          "value": 73.3118925,
+          "value": 79.4140435,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 3,
-          "time_local": "00:00",
-          "station_id": "37",
-          "station_name": "Niš O.š. Sveti Sava",
+          "samples": 19,
+          "time_local": "01:00",
+          "station_id": "38",
+          "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
           "category": {
             "key": "polluted",
@@ -686,13 +686,13 @@
           }
         },
         "SO2": {
-          "value": 7.5369513032436,
+          "value": 7.6074364833333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 4,
-          "time_local": "00:00",
-          "station_id": "106",
-          "station_name": "Niš Dimitrija Leka",
+          "samples": 20,
+          "time_local": "01:00",
+          "station_id": "37",
+          "station_name": "Niš O.š. Sveti Sava",
           "data_status": "preliminary",
           "category": {
             "key": "good",
@@ -701,11 +701,11 @@
           }
         },
         "O3": {
-          "value": 101.06005,
+          "value": 101.788225,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 3,
-          "time_local": "00:00",
+          "samples": 15,
+          "time_local": "01:00",
           "station_id": "36",
           "station_name": "Kamenički Vis EMEP",
           "data_status": "preliminary",
@@ -722,7 +722,7 @@
         "38",
         "106"
       ],
-      "observation_count": 16,
+      "observation_count": 84,
       "data_status": "preliminary"
     }
   ]
