@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-12T05:54:39.104Z",
+  "generated_at_utc": "2026-10-12T15:20:42.825Z",
   "timezone": "Europe/Belgrade",
   "period_days": 30,
   "source": "SEPA / Kosava Open Data API",
@@ -2875,7 +2875,7 @@
           "value": 47.577333333333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 24,
+          "samples": 54,
           "time_local": "06:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
@@ -2890,7 +2890,7 @@
           "value": 41.880833333333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 24,
+          "samples": 54,
           "time_local": "06:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
@@ -2902,26 +2902,26 @@
           }
         },
         "NO2": {
-          "value": 16.45094,
+          "value": 36.561895333333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 30,
-          "time_local": "07:00",
-          "station_id": "37",
-          "station_name": "Niš O.š. Sveti Sava",
+          "samples": 70,
+          "time_local": "09:00",
+          "station_id": "38",
+          "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
           "category": {
-            "key": "acceptable",
-            "label": "Prihvatljiv",
-            "rank": 1
+            "key": "moderate",
+            "label": "Umeren",
+            "rank": 2
           }
         },
         "SO2": {
-          "value": 9.1048659630617,
+          "value": 14.804147822062,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 32,
-          "time_local": "06:00",
+          "samples": 72,
+          "time_local": "15:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
           "data_status": "preliminary",
@@ -2932,18 +2932,18 @@
           }
         },
         "O3": {
-          "value": 48.42349135081,
+          "value": 72.057462692261,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 22,
-          "time_local": "00:00",
+          "samples": 52,
+          "time_local": "16:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
           "data_status": "preliminary",
           "category": {
-            "key": "good",
-            "label": "Dobar",
-            "rank": 0
+            "key": "acceptable",
+            "label": "Prihvatljiv",
+            "rank": 1
           }
         }
       },
@@ -2953,7 +2953,7 @@
         "38",
         "106"
       ],
-      "observation_count": 132,
+      "observation_count": 302,
       "data_status": "preliminary"
     }
   ]
