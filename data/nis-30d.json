@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-21T07:37:17.436Z",
+  "generated_at_utc": "2026-10-21T13:46:19.763Z",
   "timezone": "Europe/Belgrade",
   "period_days": 30,
   "source": "SEPA / Kosava Open Data API",
@@ -2872,13 +2872,13 @@
       },
       "pollutants": {
         "PM10": {
-          "value": 79.002586206897,
+          "value": 103.303,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 30,
-          "time_local": "00:00",
-          "station_id": "38",
-          "station_name": "Niš IZJZ Niš",
+          "samples": 48,
+          "time_local": "10:00",
+          "station_id": "37",
+          "station_name": "Niš O.š. Sveti Sava",
           "data_status": "preliminary",
           "category": {
             "key": "moderate",
@@ -2890,7 +2890,7 @@
           "value": 63.129137931034,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 30,
+          "samples": 48,
           "time_local": "00:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
@@ -2902,11 +2902,11 @@
           }
         },
         "NO2": {
-          "value": 58.477353,
+          "value": 58.789793333333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 38,
-          "time_local": "09:00",
+          "samples": 62,
+          "time_local": "10:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
@@ -2917,11 +2917,11 @@
           }
         },
         "SO2": {
-          "value": 11.426755466667,
+          "value": 18.041825,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 40,
-          "time_local": "09:00",
+          "samples": 63,
+          "time_local": "10:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
@@ -2932,11 +2932,11 @@
           }
         },
         "O3": {
-          "value": 94.82235,
+          "value": 98.243775,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 28,
-          "time_local": "00:00",
+          "samples": 46,
+          "time_local": "15:00",
           "station_id": "36",
           "station_name": "Kamenički Vis EMEP",
           "data_status": "preliminary",
@@ -2953,7 +2953,7 @@
         "38",
         "106"
       ],
-      "observation_count": 166,
+      "observation_count": 267,
       "data_status": "preliminary"
     }
   ]
