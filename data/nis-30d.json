@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-25T11:24:18.424Z",
+  "generated_at_utc": "2026-10-25T16:15:11.137Z",
   "timezone": "Europe/Belgrade",
   "period_days": 30,
   "source": "SEPA / Kosava Open Data API",
@@ -2875,7 +2875,7 @@
           "value": 46.776,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 42,
+          "samples": 57,
           "time_local": "00:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
@@ -2890,7 +2890,7 @@
           "value": 36.118666666667,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 42,
+          "samples": 57,
           "time_local": "01:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
@@ -2905,7 +2905,7 @@
           "value": 37.327055333333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 56,
+          "samples": 75,
           "time_local": "00:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
@@ -2920,7 +2920,7 @@
           "value": 19.086751263618,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 55,
+          "samples": 74,
           "time_local": "09:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
@@ -2932,11 +2932,11 @@
           }
         },
         "O3": {
-          "value": 75.627125,
+          "value": 77.582225,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 42,
-          "time_local": "01:00",
+          "samples": 57,
+          "time_local": "17:00",
           "station_id": "36",
           "station_name": "Kamenički Vis EMEP",
           "data_status": "preliminary",
@@ -2953,7 +2953,7 @@
         "38",
         "106"
       ],
-      "observation_count": 237,
+      "observation_count": 320,
       "data_status": "preliminary"
     }
   ]
