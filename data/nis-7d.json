@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-29T07:02:56.886Z",
+  "generated_at_utc": "2026-10-29T14:15:46.622Z",
   "timezone": "Europe/Belgrade",
   "period_days": 7,
   "source": "SEPA / Kosava Open Data API",
@@ -641,11 +641,11 @@
       },
       "pollutants": {
         "PM10": {
-          "value": 35.7385,
+          "value": 38.209,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 16,
-          "time_local": "01:00",
+          "samples": 47,
+          "time_local": "08:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
@@ -659,7 +659,7 @@
           "value": 23.997333333333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 16,
+          "samples": 47,
           "time_local": "00:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
@@ -671,28 +671,28 @@
           }
         },
         "NO2": {
-          "value": 24.909146166667,
+          "value": 37.473711,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 24,
-          "time_local": "07:00",
+          "samples": 62,
+          "time_local": "08:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
           "category": {
-            "key": "acceptable",
-            "label": "Prihvatljiv",
-            "rank": 1
+            "key": "moderate",
+            "label": "Umeren",
+            "rank": 2
           }
         },
         "SO2": {
-          "value": 16.992251854579,
+          "value": 17.2945872,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 24,
-          "time_local": "00:00",
-          "station_id": "106",
-          "station_name": "Niš Dimitrija Leka",
+          "samples": 62,
+          "time_local": "01:00",
+          "station_id": "37",
+          "station_name": "Niš O.š. Sveti Sava",
           "data_status": "preliminary",
           "category": {
             "key": "good",
@@ -701,27 +701,28 @@
           }
         },
         "O3": {
-          "value": 54.1975,
+          "value": 74.230625,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 15,
-          "time_local": "04:00",
+          "samples": 45,
+          "time_local": "14:00",
           "station_id": "36",
           "station_name": "Kamenički Vis EMEP",
           "data_status": "preliminary",
           "category": {
-            "key": "good",
-            "label": "Dobar",
-            "rank": 0
+            "key": "acceptable",
+            "label": "Prihvatljiv",
+            "rank": 1
           }
         }
       },
       "stations_with_data": [
         "36",
         "38",
-        "106"
+        "106",
+        "37"
       ],
-      "observation_count": 95,
+      "observation_count": 263,
       "data_status": "preliminary"
     }
   ]
