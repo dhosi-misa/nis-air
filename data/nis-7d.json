@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-30T18:35:47.953Z",
+  "generated_at_utc": "2026-10-30T22:57:18.255Z",
   "timezone": "Europe/Belgrade",
   "period_days": 7,
   "source": "SEPA / Kosava Open Data API",
@@ -644,7 +644,7 @@
           "value": 62.241333333333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 60,
+          "samples": 72,
           "time_local": "14:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
@@ -659,7 +659,7 @@
           "value": 60.397833333333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 60,
+          "samples": 72,
           "time_local": "18:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
@@ -674,7 +674,7 @@
           "value": 40.939248166667,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 78,
+          "samples": 94,
           "time_local": "08:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
@@ -689,7 +689,7 @@
           "value": 42.892360857964,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 80,
+          "samples": 96,
           "time_local": "00:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
@@ -704,7 +704,7 @@
           "value": 42.716275,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 58,
+          "samples": 70,
           "time_local": "05:00",
           "station_id": "36",
           "station_name": "Kamenički Vis EMEP",
@@ -722,7 +722,7 @@
         "38",
         "106"
       ],
-      "observation_count": 336,
+      "observation_count": 404,
       "data_status": "preliminary"
     }
   ]
