@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-11-03T18:25:44.353Z",
+  "generated_at_utc": "2026-11-03T23:58:03.351Z",
   "timezone": "Europe/Belgrade",
   "period_days": 30,
   "source": "SEPA / Kosava Open Data API",
@@ -62,7 +62,7 @@
           "value": 73.2165,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 72,
+          "samples": 63,
           "time_local": "20:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
@@ -77,7 +77,7 @@
           "value": 41.198333333333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 72,
+          "samples": 63,
           "time_local": "21:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
@@ -92,7 +92,7 @@
           "value": 80.093123,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 94,
+          "samples": 82,
           "time_local": "21:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
@@ -107,7 +107,7 @@
           "value": 8.4450450296402,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 96,
+          "samples": 84,
           "time_local": "15:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
@@ -122,7 +122,7 @@
           "value": 112.65765,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 69,
+          "samples": 61,
           "time_local": "17:00",
           "station_id": "36",
           "station_name": "Kamenički Vis EMEP",
@@ -140,7 +140,7 @@
         "38",
         "106"
       ],
-      "observation_count": 403,
+      "observation_count": 353,
       "data_status": "preliminary"
     },
     {
@@ -2866,32 +2866,17 @@
         "key": "moderate",
         "label": "Umeren",
         "rank": 2,
-        "pollutant": "NO2",
-        "value": 41.133726333333,
+        "pollutant": "PM2.5",
+        "value": 19.674666666667,
         "station_id": "38"
       },
       "pollutants": {
         "PM10": {
-          "value": 10.211666666667,
+          "value": 22.7555,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 60,
-          "time_local": "19:00",
-          "station_id": "38",
-          "station_name": "Niš IZJZ Niš",
-          "data_status": "preliminary",
-          "category": {
-            "key": "good",
-            "label": "Dobar",
-            "rank": 0
-          }
-        },
-        "PM2.5": {
-          "value": 9.213,
-          "unit": "ug.m-3",
-          "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 60,
-          "time_local": "19:00",
+          "samples": 72,
+          "time_local": "21:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
@@ -2901,11 +2886,26 @@
             "rank": 1
           }
         },
+        "PM2.5": {
+          "value": 19.674666666667,
+          "unit": "ug.m-3",
+          "aggregation": "maksimum z dostupnih satnih sredina tog dana",
+          "samples": 72,
+          "time_local": "21:00",
+          "station_id": "38",
+          "station_name": "Niš IZJZ Niš",
+          "data_status": "preliminary",
+          "category": {
+            "key": "moderate",
+            "label": "Umeren",
+            "rank": 2
+          }
+        },
         "NO2": {
           "value": 41.133726333333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 75,
+          "samples": 91,
           "time_local": "17:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
@@ -2920,7 +2920,7 @@
           "value": 7.4984660259883,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 74,
+          "samples": 90,
           "time_local": "07:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
@@ -2935,7 +2935,7 @@
           "value": 38.7296,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 59,
+          "samples": 71,
           "time_local": "09:00",
           "station_id": "37",
           "station_name": "Niš O.š. Sveti Sava",
@@ -2953,7 +2953,7 @@
         "38",
         "106"
       ],
-      "observation_count": 328,
+      "observation_count": 396,
       "data_status": "preliminary"
     }
   ]
