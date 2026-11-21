@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-11-21T17:29:07.220Z",
+  "generated_at_utc": "2026-11-21T23:13:17.848Z",
   "timezone": "Europe/Belgrade",
   "period_days": 7,
   "source": "SEPA / Kosava Open Data API",
@@ -644,7 +644,7 @@
           "value": 50.5945,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 57,
+          "samples": 72,
           "time_local": "17:00",
           "station_id": "37",
           "station_name": "Niš O.š. Sveti Sava",
@@ -659,7 +659,7 @@
           "value": 37.4455,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 57,
+          "samples": 72,
           "time_local": "00:00",
           "station_id": "37",
           "station_name": "Niš O.š. Sveti Sava",
@@ -674,7 +674,7 @@
           "value": 46.862861833333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 76,
+          "samples": 96,
           "time_local": "16:00",
           "station_id": "37",
           "station_name": "Niš O.š. Sveti Sava",
@@ -689,7 +689,7 @@
           "value": 11.466522933333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 76,
+          "samples": 95,
           "time_local": "10:00",
           "station_id": "37",
           "station_name": "Niš O.š. Sveti Sava",
@@ -704,7 +704,7 @@
           "value": 83.560224151611,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 57,
+          "samples": 72,
           "time_local": "14:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
@@ -722,7 +722,7 @@
         "38",
         "106"
       ],
-      "observation_count": 323,
+      "observation_count": 407,
       "data_status": "preliminary"
     }
   ]
