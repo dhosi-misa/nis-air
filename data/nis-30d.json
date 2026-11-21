@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-11-21T01:31:26.204Z",
+  "generated_at_utc": "2026-11-21T09:47:04.889Z",
   "timezone": "Europe/Belgrade",
   "period_days": 30,
   "source": "SEPA / Kosava Open Data API",
@@ -2875,7 +2875,7 @@
           "value": 43.194666666667,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 9,
+          "samples": 33,
           "time_local": "00:00",
           "station_id": "37",
           "station_name": "Niš O.š. Sveti Sava",
@@ -2890,7 +2890,7 @@
           "value": 37.4455,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 9,
+          "samples": 33,
           "time_local": "00:00",
           "station_id": "37",
           "station_name": "Niš O.š. Sveti Sava",
@@ -2902,11 +2902,11 @@
           }
         },
         "NO2": {
-          "value": 34.782898333333,
+          "value": 38.069898166667,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 12,
-          "time_local": "00:00",
+          "samples": 44,
+          "time_local": "10:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
@@ -2917,11 +2917,11 @@
           }
         },
         "SO2": {
-          "value": 7.4755292166667,
+          "value": 11.466522933333,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 12,
-          "time_local": "00:00",
+          "samples": 44,
+          "time_local": "10:00",
           "station_id": "37",
           "station_name": "Niš O.š. Sveti Sava",
           "data_status": "preliminary",
@@ -2935,7 +2935,7 @@
           "value": 81.08345,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 9,
+          "samples": 33,
           "time_local": "00:00",
           "station_id": "36",
           "station_name": "Kamenički Vis EMEP",
@@ -2953,7 +2953,7 @@
         "38",
         "106"
       ],
-      "observation_count": 51,
+      "observation_count": 187,
       "data_status": "preliminary"
     }
   ]
