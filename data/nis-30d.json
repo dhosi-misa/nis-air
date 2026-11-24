@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-11-24T05:59:24.290Z",
+  "generated_at_utc": "2026-11-24T17:40:00.281Z",
   "timezone": "Europe/Belgrade",
   "period_days": 30,
   "source": "SEPA / Kosava Open Data API",
@@ -2863,37 +2863,22 @@
       "date": "2026-11-24",
       "date_label": "utorak, 24. novembar",
       "indicator": {
-        "key": "moderate",
-        "label": "Umeren",
-        "rank": 2,
+        "key": "polluted",
+        "label": "Zagađen",
+        "rank": 3,
         "pollutant": "PM2.5",
-        "value": 26.9625,
-        "station_id": "106"
+        "value": 70.855166666667,
+        "station_id": "38"
       },
       "pollutants": {
         "PM10": {
-          "value": 33.207666666667,
+          "value": 112.73066666667,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 21,
-          "time_local": "06:00",
-          "station_id": "106",
-          "station_name": "Niš Dimitrija Leka",
-          "data_status": "preliminary",
-          "category": {
-            "key": "acceptable",
-            "label": "Prihvatljiv",
-            "rank": 1
-          }
-        },
-        "PM2.5": {
-          "value": 26.9625,
-          "unit": "ug.m-3",
-          "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 21,
-          "time_local": "06:00",
-          "station_id": "106",
-          "station_name": "Niš Dimitrija Leka",
+          "samples": 57,
+          "time_local": "18:00",
+          "station_id": "38",
+          "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
           "category": {
             "key": "moderate",
@@ -2901,12 +2886,27 @@
             "rank": 2
           }
         },
-        "NO2": {
-          "value": 31.661683166667,
+        "PM2.5": {
+          "value": 70.855166666667,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 28,
-          "time_local": "00:00",
+          "samples": 57,
+          "time_local": "18:00",
+          "station_id": "38",
+          "station_name": "Niš IZJZ Niš",
+          "data_status": "preliminary",
+          "category": {
+            "key": "polluted",
+            "label": "Zagađen",
+            "rank": 3
+          }
+        },
+        "NO2": {
+          "value": 59.414674,
+          "unit": "ug.m-3",
+          "aggregation": "maksimum z dostupnih satnih sredina tog dana",
+          "samples": 76,
+          "time_local": "18:00",
           "station_id": "38",
           "station_name": "Niš IZJZ Niš",
           "data_status": "preliminary",
@@ -2920,7 +2920,7 @@
           "value": 17.57460165,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 27,
+          "samples": 75,
           "time_local": "05:00",
           "station_id": "36",
           "station_name": "Kamenički Vis EMEP",
@@ -2932,18 +2932,18 @@
           }
         },
         "O3": {
-          "value": 56.48615398407,
+          "value": 69.16911239624,
           "unit": "ug.m-3",
           "aggregation": "maksimum z dostupnih satnih sredina tog dana",
-          "samples": 21,
-          "time_local": "03:00",
+          "samples": 57,
+          "time_local": "14:00",
           "station_id": "106",
           "station_name": "Niš Dimitrija Leka",
           "data_status": "preliminary",
           "category": {
-            "key": "good",
-            "label": "Dobar",
-            "rank": 0
+            "key": "acceptable",
+            "label": "Prihvatljiv",
+            "rank": 1
           }
         }
       },
@@ -2953,7 +2953,7 @@
         "38",
         "106"
       ],
-      "observation_count": 118,
+      "observation_count": 322,
       "data_status": "preliminary"
     }
   ]
